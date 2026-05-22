@@ -239,8 +239,11 @@
 
     .work-img {
       width: 100%;
+      padding: 0;
+      border: 0;
       background: var(--work-gray);
       overflow: hidden;
+      cursor: pointer;
       transition: transform var(--duration), box-shadow var(--duration), filter var(--duration);
     }
 
@@ -360,21 +363,24 @@
     }
 
     .modal-close {
-      position: absolute;
-      top: 18px;
-      right: 20px;
+      position: sticky;
+      top: 0;
+      margin-left: auto;
+      z-index: 3;
       width: 36px;
       height: 36px;
       border: 0;
-      background: transparent;
+      background: var(--gray);
       color: var(--red);
+      display: grid;
+      place-items: center;
       font-size: 32px;
       line-height: 1;
       cursor: pointer;
     }
 
     .modal-category {
-      margin: 0 0 8px;
+      margin: -20px 0 8px;
       color: var(--red);
       text-align: center;
       font-size: 12px;
@@ -383,11 +389,20 @@
     }
 
     .modal-title {
-      margin: 0 0 28px;
+      margin: 0 0 24px;
       color: var(--red);
       text-align: center;
       font-size: clamp(34px, 5vw, 68px);
       line-height: 1;
+    }
+
+    .modal-text {
+      margin: 0 auto 28px;
+      max-width: 720px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 2;
+      text-align: center;
     }
 
     .modal-img {
@@ -397,13 +412,22 @@
       background: var(--work-gray);
     }
 
-    .modal-text {
-      margin: 28px auto 0;
-      max-width: 720px;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 2;
-      text-align: center;
+    .modal-lp-detail {
+      display: none;
+      width: min(760px, 100%);
+      margin: 0 auto;
+      background: var(--white);
+    }
+
+    .modal-lp-detail.is-show {
+      display: grid;
+      gap: 0;
+    }
+
+    .modal-lp-detail img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     /* =========================
@@ -558,12 +582,17 @@
       .modal-content {
         width: calc(100% - 32px);
         max-height: 82dvh;
-        padding: 42px 20px 30px;
+        padding: 32px 18px 30px;
       }
 
       .modal-close {
-        top: 12px;
-        right: 12px;
+        width: 34px;
+        height: 34px;
+        font-size: 30px;
+      }
+
+      .modal-category {
+        margin-top: -12px;
       }
 
       .modal-img {
@@ -622,32 +651,32 @@
             <div class="slider-page">
               <article class="work-card">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-01.jpg" data-text="構成・ライティング・デザインを担当しました。商品の特徴が伝わりやすいよう、訴求の優先順位と視線の流れを意識して制作しています。"><img src="images/lp-01.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-01.jpg" data-text="構成・ライティング・デザインを担当しました。商品の特徴が伝わりやすいよう、訴求の優先順位と視線の流れを意識して制作しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-01.jpg" data-images="images/lp-01-01.webp,images/lp-01-02.webp,images/lp-01-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の特徴が伝わりやすいよう、訴求の優先順位と視線の流れを意識して制作しています。"><img src="images/lp-01.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-01.jpg" data-images="images/lp-01-01.webp,images/lp-01-02.webp,images/lp-01-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の特徴が伝わりやすいよう、訴求の優先順位と視線の流れを意識して制作しています。">詳細</button>
               </article>
               <article class="work-card">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-02.jpg" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。"><img src="images/lp-02.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-02.jpg" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。">詳細</button>
-              </article>
-            </div>
-            <div class="slider-page">
-              <article class="work-card">
-                <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-03.jpg" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。"><img src="images/lp-03.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-03.jpg" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。">詳細</button>
-              </article>
-              <article class="work-card">
-                <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-04.jpg" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。"><img src="images/lp-04.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-04.jpg" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-02.jpg" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。"><img src="images/lp-02.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-02.jpg" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。">詳細</button>
               </article>
             </div>
             <div class="slider-page">
               <article class="work-card">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-05.jpg" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。"><img src="images/lp-05.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-05.jpg" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-03.jpg" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。"><img src="images/lp-03.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-03.jpg" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。">詳細</button>
+              </article>
+              <article class="work-card">
+                <p class="work-name">加湿器</p>
+                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-04.jpg" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。"><img src="images/lp-04.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-04.jpg" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。">詳細</button>
+              </article>
+            </div>
+            <div class="slider-page">
+              <article class="work-card">
+                <p class="work-name">加湿器</p>
+                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-05.jpg" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。"><img src="images/lp-05.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-05.jpg" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。">詳細</button>
               </article>
             </div>
           </div>
@@ -749,8 +778,9 @@
       <button class="modal-close js-modal-close" type="button" aria-label="閉じる">×</button>
       <p class="modal-category" id="modalCategory"></p>
       <h3 class="modal-title en" id="modalTitle"></h3>
-      <img class="modal-img" id="modalImg" src="" alt="">
       <p class="modal-text" id="modalText"></p>
+      <img class="modal-img" id="modalImg" src="" alt="">
+      <div class="modal-lp-detail" id="modalLpDetail"></div>
     </div>
   </div>
 
@@ -839,15 +869,47 @@
     const modalCategory = document.getElementById('modalCategory');
     const modalImg = document.getElementById('modalImg');
     const modalText = document.getElementById('modalText');
+    const modalLpDetail = document.getElementById('modalLpDetail');
     const modalCloseButtons = document.querySelectorAll('.js-modal-close');
+
+    const closeModal = () => {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-modal-open');
+      modalImg.removeAttribute('src');
+      modalLpDetail.innerHTML = '';
+      modalLpDetail.classList.remove('is-show');
+      modalImg.style.display = '';
+    };
 
     document.querySelectorAll('.js-modal-open').forEach((button) => {
       button.addEventListener('click', () => {
+        const isLp = button.dataset.type === 'lp';
+        const lpImages = button.dataset.images ? button.dataset.images.split(',').map(src => src.trim()).filter(Boolean) : [];
+
         modalTitle.textContent = button.dataset.title || '';
         modalCategory.textContent = button.dataset.category || '';
-        modalImg.src = button.dataset.img || '';
-        modalImg.alt = button.dataset.title || '';
         modalText.textContent = button.dataset.text || '';
+
+        modalLpDetail.innerHTML = '';
+        modalLpDetail.classList.remove('is-show');
+        modalImg.style.display = '';
+
+        if (isLp && lpImages.length) {
+          modalImg.style.display = 'none';
+          modalLpDetail.classList.add('is-show');
+
+          lpImages.forEach((src, index) => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = `${button.dataset.title || 'LP'} 全体画像 ${index + 1}`;
+            img.loading = 'lazy';
+            modalLpDetail.appendChild(img);
+          });
+        } else {
+          modalImg.src = button.dataset.img || '';
+          modalImg.alt = button.dataset.title || '';
+        }
 
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
@@ -856,18 +918,12 @@
     });
 
     modalCloseButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('is-modal-open');
-      });
+      button.addEventListener('click', closeModal);
     });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('is-modal-open');
+        closeModal();
       }
     });
   </script>
