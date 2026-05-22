@@ -467,19 +467,26 @@
         letter-spacing: 0.16em;
       }
     }
+
     @media (max-width: 760px) {
   .hero {
-    height: calc(100dvh + 120px) !important;
-    min-height: calc(100dvh + 120px) !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    background: var(--red);
   }
 
   .hero-inner {
-    height: 100dvh !important;
-    min-height: 100dvh !important;
+    height: calc(100dvh - 110px) !important;
+    min-height: calc(100dvh - 110px) !important;
   }
 
   .scroll-sign {
-    bottom: 120px;
+    bottom: 110px;
+  }
+
+  html,
+  body {
+    background: var(--gray);
   }
 }
   </style>
