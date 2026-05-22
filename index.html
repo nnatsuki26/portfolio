@@ -98,22 +98,18 @@
       padding: 80px 24px;
     }
 
-    .hero-title-wrap { width: min(640px, 82vw); }
+    .hero-title-wrap {
+  width: min(1100px, 82vw);
+}
 
-    .hero-subtitle {
-      margin: 0 0 8px;
-      font-size: clamp(18px, 2.2vw, 34px);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 0.22em;
-    }
+.hero-logo {
+  margin: 0;
+}
 
-    .hero-title {
-      margin: 0;
-      font-size: clamp(92px, 17vw, 250px);
-      line-height: 0.74;
-      color: var(--white);
-    }
+.hero-logo img {
+  width: 100%;
+  display: block;
+}
 
     .scroll-sign {
       position: absolute;
@@ -464,66 +460,39 @@
         font-size: 14px;
         letter-spacing: 0.16em;
       }
-
-      .hero-title { font-size: clamp(74px, 25vw, 112px); }
-      .lp-img { aspect-ratio: 3 / 4.6; }
-      .footer { font-size: 9px; }
     }
   </style>
 </head>
 <body>
   <main>
     <!-- HERO -->
-    <section class="hero" id="top">
-      <a class="profile-link" href="#profile" aria-label="プロフィールへ移動">
-        <span class="profile-thumb">
-          <!-- プロフィール画像に差し替え -->
-          <img src="images/profile.jpg" alt="プロフィール写真" />
-        </span>
-        <span class="en">PROFILE</span>
-      </a>
+<section class="hero" id="top">
 
-      <div class="hero-inner">
-        <div class="hero-title-wrap">
-          <p class="hero-subtitle en">CREATIVE DESIGN</p>
-          <h1 class="hero-title en">port<br />folio</h1>
-        </div>
-      </div>
+  <a class="profile-link" href="#profile" aria-label="プロフィールへ移動">
+    <span class="profile-thumb">
+      <img src="images/profile.jpg" alt="プロフィール写真" />
+    </span>
+    <span class="en">PROFILE</span>
+  </a>
 
-      <a class="scroll-sign" href="#lp" aria-label="制作実績へ移動">
-        <span class="scroll-circle en">SCROLL</span>
-        <span class="scroll-line"></span>
-      </a>
-    </section>
+  <div class="hero-inner">
 
-    <!-- LP & THUMBNAIL -->
-    <section class="works-section" id="lp">
-      <div class="section-inner">
-        <div class="section-heading">
-          <h2 class="section-title en">LP &amp; Thumbnail</h2>
-          <span class="section-kana">ランディングページ &amp; サムネイル</span>
-        </div>
+    <div class="hero-title-wrap">
 
-        <div class="works-grid grid-lp">
-          <div class="slider-track">
-            <div class="slider-page">
-              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-01.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
-              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-02.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
-            </div>
-            <div class="slider-page">
-              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-03.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
-              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-04.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
-            </div>
-            <div class="slider-page">
-              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-05.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
-            </div>
-          </div>
-        </div>
+      <h1 class="hero-logo">
+        <img src="images/fv-logo.webp" alt="portfolio">
+      </h1>
 
-        <div class="pager" aria-label="LP & Thumbnail スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button><button class="pager-dot" type="button" aria-label="2枚目"></button><button class="pager-dot" type="button" aria-label="3枚目"></button></div>
-        <div class="scope-box">対応範囲：構成・ライティング・デザイン</div>
-      </div>
-    </section>
+    </div>
+
+  </div>
+
+  <a class="scroll-sign" href="#lp" aria-label="制作実績へ移動">
+    <span class="scroll-circle en">SCROLL</span>
+    <span class="scroll-line"></span>
+  </a>
+
+</section>
 
     <!-- BANNER -->
     <section class="works-section" id="banner">
