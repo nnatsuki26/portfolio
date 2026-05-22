@@ -31,12 +31,12 @@
     }
 
     body {
-      margin: 0;
-      font-family: "Noto Sans JP", sans-serif;
-      color: var(--text);
-      background: var(--gray);
-      letter-spacing: 0.04em;
-    }
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  color: var(--text);
+  background: var(--red);
+  letter-spacing: 0.04em;
+}
 
     img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
@@ -51,15 +51,18 @@
       HERO
     ========================= */
     .hero {
-      position: relative;
-      height: 100dvh;
-      min-height: 100dvh;
-      scroll-snap-align: start;
-      scroll-snap-stop: always;
-      background: var(--red);
-      color: var(--white);
-      overflow: hidden;
-    }
+  position: relative;
+  height: 100dvh;
+  min-height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background: var(--red);
+  color: var(--white);
+  overflow: hidden;
+
+  transform: translateZ(0);
+  will-change: transform;
+}
 
     .profile-link {
       position: absolute;
