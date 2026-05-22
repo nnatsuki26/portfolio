@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NISHITANI NATSUKI | Creative Design Portfolio</title>
+  <meta name="description" content="NISHITANI NATSUKIのクリエイティブデザインポートフォリオ。LP、サムネイル、バナー、DTP、WEBサイト制作実績を掲載しています。" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --red: #c91c1c;
+      --red-dark: #aa1212;
+      --gray: #eeeeee;
+      --work-gray: #d8d8d8;
+      --white: #ffffff;
+      --text: #151515;
+      --line: #b9b9b9;
+      --duration: 0.35s;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans JP", sans-serif;
+      color: var(--text);
+      background: var(--gray);
+      letter-spacing: 0.04em;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .en {
+      font-family: "Archivo Black", "Noto Sans JP", sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    /* =========================
+      HERO
+    ========================= */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      background: var(--red);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .profile-link {
+      position: absolute;
+      top: clamp(24px, 3vw, 42px);
+      right: clamp(24px, 3.5vw, 58px);
+      z-index: 5;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      transition: opacity var(--duration), transform var(--duration);
+    }
+
+    .profile-link:hover { opacity: 0.8; transform: translateY(-3px); }
+
+    .profile-thumb {
+      width: clamp(58px, 5vw, 80px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ddd;
+    }
+
+    .profile-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-inner {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 80px 24px;
+    }
+
+    .hero-title-wrap { width: min(640px, 82vw); }
+
+    .hero-subtitle {
+      margin: 0 0 8px;
+      font-size: clamp(18px, 2.2vw, 34px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0.22em;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(92px, 17vw, 250px);
+      line-height: 0.74;
+      color: var(--white);
+    }
+
+    .scroll-sign {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      translate: -50% 0;
+      display: grid;
+      justify-items: center;
+      color: var(--white);
+    }
+
+    .scroll-circle {
+      width: 86px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 74px;
+      background: rgba(255,255,255,0.8);
+    }
+
+    /* =========================
+      COMMON SECTION
+    ========================= */
+    .works-section {
+      min-height: 100svh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      padding: clamp(88px, 10vw, 150px) 24px clamp(76px, 8vw, 120px);
+      background: var(--gray);
+      display: grid;
+      align-items: center;
+    }
+
+    .section-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      color: var(--red);
+      margin-bottom: clamp(56px, 6vw, 86px);
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(58px, 6vw, 92px);
+      line-height: 0.92;
+    }
+
+    .section-kana {
+      display: block;
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .works-grid {
+      display: grid;
+      gap: clamp(26px, 3vw, 46px);
+      justify-content: center;
+    }
+
+    /* PCではスライダー用の箱を無効化して、今まで通りgrid表示 */
+    .slider-track,
+    .slider-page {
+      display: contents;
+    }
+
+    .sp-only {
+      display: none;
+    }
+
+    .grid-lp {
+      grid-template-columns: repeat(5, minmax(120px, 170px));
+      align-items: start;
+    }
+
+    .grid-banner {
+      grid-template-columns: repeat(3, minmax(220px, 320px));
+      row-gap: 48px;
+    }
+
+    .grid-dtp {
+      grid-template-columns: repeat(3, minmax(220px, 320px));
+    }
+
+    /* PC：DTPは3カラム×1行 */
+    .grid-dtp .work-card:nth-of-type(n + 4) {
+      display: none;
+    }
+
+    .grid-web {
+      grid-template-columns: repeat(2, minmax(320px, 520px));
+      column-gap: clamp(48px, 5vw, 70px);
+    }
+
+    .work-card {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+    }
+
+    .work-name {
+      margin: 0 0 -4px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .work-img {
+      width: 100%;
+      background: var(--work-gray);
+      overflow: hidden;
+      transition: transform var(--duration), box-shadow var(--duration), filter var(--duration);
+    }
+
+    .work-card:hover .work-img {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+      filter: brightness(0.98);
+    }
+
+    .lp-img { aspect-ratio: 3 / 5.25; }
+    .banner-img { aspect-ratio: 16 / 4; }
+    .dtp-img { aspect-ratio: 1; }
+    .web-img { aspect-ratio: 16 / 8.8; }
+
+    .work-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-btn {
+      width: 96px;
+      height: 27px;
+      border-radius: 999px;
+      border: 0;
+      background: var(--red);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      transition: background var(--duration), transform var(--duration);
+    }
+
+    .detail-btn::before {
+      content: "+";
+      font-size: 15px;
+      line-height: 1;
+      transform: translateY(-1px);
+    }
+
+    .detail-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+    .pager {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: clamp(34px, 4vw, 48px);
+    }
+
+    .pager-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #d4d4d4;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      transition: background var(--duration), transform var(--duration);
+    }
+
+    .pager-dot.is-active {
+      background: var(--red);
+      transform: scale(1.15);
+    }
+
+    .scope-box {
+      width: min(340px, 100%);
+      min-height: 34px;
+      margin: clamp(58px, 6vw, 82px) auto 0;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #555;
+    }
+
+    /* =========================
+      FOOTER
+    ========================= */
+    .footer {
+      height: 92px;
+      scroll-snap-align: end;
+      background: var(--red);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================
+      RESPONSIVE
+    ========================= */
+    @media (max-width: 1100px) {
+      .grid-lp { grid-template-columns: repeat(3, minmax(130px, 180px)); }
+      .grid-banner,
+      .grid-dtp { grid-template-columns: repeat(2, minmax(220px, 320px)); }
+    }
+
+    @media (max-width: 760px) {
+      .profile-link {
+        top: 18px;
+        right: 18px;
+        font-size: 10px;
+      }
+
+      .hero-title-wrap { width: min(430px, 88vw); }
+      .scroll-circle { width: 68px; font-size: 10px; }
+      .scroll-line { height: 52px; }
+
+      .works-section {
+        min-height: 100svh;
+        padding: 64px 0 48px;
+      }
+
+      .section-inner {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .section-heading {
+        margin-bottom: 38px;
+        padding: 0 24px;
+      }
+
+      .section-title { font-size: clamp(44px, 15vw, 70px); }
+      .section-kana { font-size: 12px; }
+
+      /* SP：横スライダー化 */
+      .works-grid {
+        display: block;
+        width: 100%;
+      }
+
+      .slider-track {
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scroll-padding-left: 24px;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 24px 6px;
+        scrollbar-width: none;
+      }
+
+      .slider-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slider-page {
+        display: grid;
+        flex: 0 0 calc(100vw - 48px);
+        width: calc(100vw - 48px);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        padding: 0;
+        gap: 34px 18px;
+      }
+
+      /* LP：2つ表示 / 2カラム×1行 */
+      .grid-lp .slider-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      /* Banner：6つ表示 / 2カラム×3行 */
+      .grid-banner .slider-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      /* DTP：4つ表示 / 2カラム×2行 */
+      .grid-dtp .slider-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sp-only {
+        display: grid;
+      }
+
+      .grid-dtp .work-card:nth-of-type(n + 4) {
+        display: grid;
+      }
+
+      .grid-web {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: min(520px, calc(100% - 48px));
+        margin: 0 auto;
+        gap: 34px;
+      }
+
+      .grid-web .slider-track,
+      .grid-web .slider-page {
+        display: contents;
+      }
+
+      .detail-btn {
+        width: 88px;
+        height: 26px;
+      }
+
+      .pager {
+        margin-top: 30px;
+      }
+
+      .scope-box {
+        margin-top: 42px;
+        width: min(340px, calc(100% - 48px));
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-subtitle {
+        font-size: 14px;
+        letter-spacing: 0.16em;
+      }
+
+      .hero-title { font-size: clamp(74px, 25vw, 112px); }
+      .lp-img { aspect-ratio: 3 / 4.6; }
+      .footer { font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <a class="profile-link" href="#profile" aria-label="プロフィールへ移動">
+        <span class="profile-thumb">
+          <!-- プロフィール画像に差し替え -->
+          <img src="images/profile.jpg" alt="プロフィール写真" />
+        </span>
+        <span class="en">PROFILE</span>
+      </a>
+
+      <div class="hero-inner">
+        <div class="hero-title-wrap">
+          <p class="hero-subtitle en">CREATIVE DESIGN</p>
+          <h1 class="hero-title en">port<br />folio</h1>
+        </div>
+      </div>
+
+      <a class="scroll-sign" href="#lp" aria-label="制作実績へ移動">
+        <span class="scroll-circle en">SCROLL</span>
+        <span class="scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- LP & THUMBNAIL -->
+    <section class="works-section" id="lp">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 class="section-title en">LP &amp; Thumbnail</h2>
+          <span class="section-kana">ランディングページ &amp; サムネイル</span>
+        </div>
+
+        <div class="works-grid grid-lp">
+          <div class="slider-track">
+            <div class="slider-page">
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-01.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-02.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
+            </div>
+            <div class="slider-page">
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-03.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-04.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
+            </div>
+            <div class="slider-page">
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img lp-img" aria-label="加湿器の詳細へ"><img src="images/lp-05.jpg" alt="加湿器 LP・サムネイル" /></a><a href="#" class="detail-btn">詳細</a></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="pager" aria-label="LP & Thumbnail スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button><button class="pager-dot" type="button" aria-label="2枚目"></button><button class="pager-dot" type="button" aria-label="3枚目"></button></div>
+        <div class="scope-box">対応範囲：構成・ライティング・デザイン</div>
+      </div>
+    </section>
+
+    <!-- BANNER -->
+    <section class="works-section" id="banner">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 class="section-title en">Banner</h2>
+          <span class="section-kana">バナー</span>
+        </div>
+
+        <div class="works-grid grid-banner">
+          <div class="slider-track">
+            <div class="slider-page">
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-01.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-02.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-03.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-04.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-05.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-06.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+            </div>
+            <div class="slider-page">
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-07.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-08.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">加湿器</p><a href="#" class="work-img banner-img"><img src="images/banner-09.jpg" alt="加湿器 バナー" /></a><a href="#" class="detail-btn">詳細</a></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="pager" aria-label="Banner スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button><button class="pager-dot" type="button" aria-label="2枚目"></button></div>
+        <div class="scope-box">対応範囲：デザイン</div>
+      </div>
+    </section>
+
+    <!-- DTP -->
+    <section class="works-section" id="dtp">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 class="section-title en">DTP</h2>
+          <span class="section-kana">印刷物</span>
+        </div>
+
+        <div class="works-grid grid-dtp">
+          <div class="slider-track">
+            <div class="slider-page">
+              <article class="work-card"><p class="work-name">パッケージ</p><a href="#" class="work-img dtp-img"><img src="images/dtp-01.jpg" alt="パッケージ デザイン" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">フライヤー</p><a href="#" class="work-img dtp-img"><img src="images/dtp-02.jpg" alt="フライヤー デザイン" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card"><p class="work-name">名刺</p><a href="#" class="work-img dtp-img"><img src="images/dtp-03.jpg" alt="名刺 デザイン" /></a><a href="#" class="detail-btn">詳細</a></article>
+              <article class="work-card sp-only"><p class="work-name">その他</p><a href="#" class="work-img dtp-img"><img src="images/dtp-04.jpg" alt="DTP デザイン" /></a><a href="#" class="detail-btn">詳細</a></article>
+            </div>
+          </div>
+        </div>
+
+        <div class="pager" aria-label="DTP スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button></div>
+        <div class="scope-box">対応範囲：デザイン</div>
+      </div>
+    </section>
+
+    <!-- WEB SITE -->
+    <section class="works-section" id="web">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 class="section-title en">WEB Site</h2>
+          <span class="section-kana">WEBサイト</span>
+        </div>
+
+        <div class="works-grid grid-web">
+          <article class="work-card"><p class="work-name">ポートフォリオ</p><a href="#" class="work-img web-img"><img src="images/web-01.jpg" alt="ポートフォリオサイト" /></a><a href="#" class="detail-btn">詳細</a></article>
+          <article class="work-card"><p class="work-name">AND DECO ブランドサイト</p><a href="#" class="work-img web-img"><img src="images/web-02.jpg" alt="AND DECO ブランドサイト" /></a><a href="#" class="detail-btn">詳細</a></article>
+        </div>
+
+        <div class="scope-box">対応範囲：デザイン</div>
+      </div>
+    </section>
+
+    <!-- PROFILE 仮置き -->
+    <section class="works-section" id="profile">
+      <div class="section-inner">
+        <div class="section-heading">
+          <h2 class="section-title en">Profile</h2>
+          <span class="section-kana">プロフィール</span>
+        </div>
+        <div class="scope-box">プロフィール内容はここに追加</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>© 2026&nbsp;&nbsp;NISHITANI NATSUKI'S CREATIVE DESIGN PORTFOLIO</small>
+  </footer>
+  <script>
+    // SP用スライダー：横スクロール＋ドット切り替え＋フリック対応
+    document.querySelectorAll('.works-grid').forEach((slider) => {
+      const track = slider.querySelector('.slider-track');
+      const pages = slider.querySelectorAll('.slider-page');
+      const pager = slider.parentElement.querySelector('.pager');
+      const dots = pager ? pager.querySelectorAll('.pager-dot') : [];
+
+      if (!track || pages.length <= 1 || !dots.length) return;
+
+      let startX = 0;
+      let startY = 0;
+      let currentIndex = 0;
+      let isTouching = false;
+
+      const getPageLeft = (index) => pages[index].offsetLeft - track.offsetLeft;
+
+      const setActiveDot = (index) => {
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('is-active', dotIndex === index);
+        });
+      };
+
+      const slideTo = (index) => {
+        currentIndex = Math.max(0, Math.min(index, pages.length - 1));
+        track.scrollTo({ left: getPageLeft(currentIndex), behavior: 'smooth' });
+        setActiveDot(currentIndex);
+      };
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => slideTo(index));
+      });
+
+      track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isTouching = true;
+      }, { passive: true });
+
+      track.addEventListener('touchend', (e) => {
+        if (!isTouching) return;
+        isTouching = false;
+
+        const endX = e.changedTouches[0].clientX;
+        const endY = e.changedTouches[0].clientY;
+        const diffX = startX - endX;
+        const diffY = startY - endY;
+
+        // 横方向の動きが強い時だけスライド。縦スクロールの邪魔をしないため。
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX > 0) {
+            slideTo(currentIndex + 1);
+          } else {
+            slideTo(currentIndex - 1);
+          }
+        }
+      }, { passive: true });
+
+      track.addEventListener('scroll', () => {
+        const trackLeft = track.scrollLeft;
+        let nearestIndex = 0;
+        let minDistance = Infinity;
+
+        pages.forEach((page, index) => {
+          const distance = Math.abs(trackLeft - getPageLeft(index));
+          if (distance < minDistance) {
+            minDistance = distance;
+            nearestIndex = index;
+          }
+        });
+
+        currentIndex = nearestIndex;
+        setActiveDot(currentIndex);
+      }, { passive: true });
+    });
+  </script>
+</body>
+</html>
