@@ -312,199 +312,140 @@
     }
 
     .modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  transition:
-    opacity 0.35s ease,
-    visibility 0.35s ease;
-}
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
 
-.modal.is-open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
+    .modal.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
 
-.modal-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.68);
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.68);
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
 
-.modal.is-open .modal-bg {
-  opacity: 1;
-}
+    .modal.is-open .modal-bg { opacity: 1; }
 
-.modal-content {
-  position: relative;
-  z-index: 2;
-  width: min(980px, calc(100% - 40px));
-  margin: clamp(88px, 8vw, 120px) auto 80px;
-  background: var(--gray);
-  color: var(--text);
-  padding: clamp(34px, 5vw, 60px);
-  border-radius: 28px;
-  box-shadow: 0 22px 60px rgba(0,0,0,0.22);
+    .modal-content {
+      position: relative;
+      z-index: 2;
+      width: min(980px, calc(100% - 40px));
+      margin: clamp(88px, 8vw, 120px) auto 80px;
+      background: var(--gray);
+      color: var(--text);
+      padding: clamp(34px, 5vw, 60px);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.22);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
 
-  opacity: 0;
-  transform: translateY(24px);
+    .modal.is-open .modal-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  transition:
-    transform 0.4s ease,
-    opacity 0.4s ease;
-}
+    .modal-content.is-page {
+      width: min(1080px, calc(100% - 40px));
+    }
 
-.modal.is-open .modal-content {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .modal-content.is-compact {
+      width: min(860px, calc(100% - 40px));
+      margin-top: clamp(100px, 12vw, 150px);
+    }
 
-.modal-content.is-page {
-  width: min(1080px, calc(100% - 40px));
-}
+    .modal-close {
+      position: fixed;
+      top: max(20px, env(safe-area-inset-top));
+      right: max(20px, env(safe-area-inset-right));
+      z-index: 4;
+      width: 64px;
+      height: 64px;
+      border: 0;
+      border-radius: 12px;
+      background: rgba(238,238,238,0.95);
+      color: #111;
+      display: grid;
+      place-items: center;
+      font-size: 42px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform var(--duration), opacity var(--duration);
+    }
 
-.modal-content.is-compact {
-  width: min(860px, calc(100% - 40px));
-  margin-top: clamp(100px, 12vw, 150px);
-}
+    .modal-close:hover {
+      transform: scale(1.05);
+      opacity: 0.85;
+    }
 
-.modal-close {
-  position: sticky;
-  top: max(18px, env(safe-area-inset-top));
-  margin-left: auto;
-  z-index: 10;
+    .modal-category {
+      margin: 0 0 8px;
+      color: var(--red);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+    }
 
-  width: 58px;
-  height: 58px;
+    .modal-title {
+      margin: 0 0 24px;
+      color: var(--red);
+      text-align: center;
+      font-size: clamp(34px, 5vw, 68px);
+      line-height: 1;
+    }
 
-  border: 0;
-  border-radius: 16px;
+    .modal-text {
+      margin: 0 auto 32px;
+      max-width: 720px;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 2;
+      text-align: center;
+    }
 
-  background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(10px);
+    .modal-img {
+      width: 100%;
+      max-height: none;
+      object-fit: contain;
+      background: var(--work-gray);
+    }
 
-  color: #111;
+    .modal-content.is-compact .modal-img {
+      max-height: 70dvh;
+    }
 
-  display: grid;
-  place-items: center;
+    .modal-lp-detail {
+      display: none;
+      width: min(900px, 100%);
+      margin: 0 auto;
+      background: var(--white);
+    }
 
-  font-size: 38px;
-  line-height: 1;
+    .modal-lp-detail.is-show {
+      display: grid;
+      gap: 0;
+    }
 
-  cursor: pointer;
-
-  transition:
-    transform var(--duration),
-    opacity var(--duration),
-    background var(--duration);
-}
-
-.modal-close:hover {
-  transform: scale(1.06);
-  opacity: 0.9;
-  background: rgba(255,255,255,1);
-}
-
-.modal-category {
-  margin: -12px 0 8px;
-  color: var(--red);
-  text-align: center;
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 0.15em;
-}
-
-.modal-title {
-  margin: 0 0 24px;
-  color: var(--red);
-  text-align: center;
-  font-size: clamp(34px, 5vw, 68px);
-  line-height: 1;
-}
-
-.modal-text {
-  margin: 0 auto 32px;
-  max-width: 720px;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 2;
-  text-align: center;
-}
-
-.modal-img {
-  width: 100%;
-  max-height: none;
-  object-fit: contain;
-  background: var(--work-gray);
-}
-
-.modal-content.is-compact .modal-img {
-  max-height: 70dvh;
-}
-
-.modal-lp-detail {
-  display: none;
-  width: min(900px, 100%);
-  margin: 0 auto;
-  background: var(--white);
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.modal-lp-detail.is-show {
-  display: grid;
-  gap: 0;
-}
-
-.modal-lp-detail img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media (max-width: 760px) {
-  .modal-content {
-    width: calc(100% - 20px);
-    margin: 64px auto 48px;
-    padding: 24px 14px 20px;
-    border-radius: 22px;
-  }
-
-  .modal-content.is-page,
-  .modal-content.is-compact {
-    width: calc(100% - 20px);
-  }
-
-  .modal-close {
-    top: max(10px, env(safe-area-inset-top));
-    width: 50px;
-    height: 50px;
-    border-radius: 14px;
-    font-size: 32px;
-  }
-
-  .modal-category {
-    margin-top: -2px;
-  }
-
-  .modal-text {
-    text-align: left;
-    font-size: 13px;
-  }
-
-  .modal-lp-detail {
-    border-radius: 14px;
-  }
-}
+    .modal-lp-detail img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
     .footer {
       height: 92px;
@@ -711,34 +652,34 @@
         <div class="works-grid grid-lp">
           <div class="slider-track">
             <div class="slider-page">
-              <article class="work-card">
+              <article class="work-card" data-type="lp" data-title="サーキュレーター" data-category="LP & Thumbnail" data-img="images/lp-01.jpg" data-images="images/yy02_1_01.webp,images/yy02_1_02.gif,images/yy02_1_03.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.gif,images/yy02_3.webp,images/yy02_4.webp" data-text="構成・ライティング・デザインを担当しました。商品の特徴が伝わりやすいよう、訴求の優先順位と視線の流れを意識して制作しています。">
                 <p class="work-name">サーキュレーター</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="サーキュレーター" data-category="LP & Thumbnail" data-img="images/lp-01.jpg" data-images="images/yy02_1_01.webp,images/yy02_1_02.gif,images/yy02_1_03.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.gif,images/yy02_3.webp,images/yy02_4.webp" data-text="構成・ライティング・デザインを担当しました。商品の特徴が伝わりやすいよう、訴求の優先順位と視線の流れを意識して制作しています。"><img src="images/lp-01.jpg" alt="サーキュレーター LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="サーキュレーター" data-category="LP & Thumbnail" data-img="images/lp-01.jpg" data-images="images/yy02_1_01.webp,images/yy02_1_02.gif,images/yy02_1_03.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.gif,images/yy02_3.webp,images/yy02_4.webp" data-text="構成・ライティング・デザインを担当しました。商品の特徴が伝わりやすいよう、訴求の優先順位と視線の流れを意識して制作しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-01.jpg" alt="サーキュレーター LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
-              <article class="work-card">
+              <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-02.jpg" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-02.jpg" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。"><img src="images/lp-02.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-02.jpg" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-02.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
             </div>
             <div class="slider-page">
-              <article class="work-card">
+              <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-03.jpg" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-03.jpg" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。"><img src="images/lp-03.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-03.jpg" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-03.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
-              <article class="work-card">
+              <article class="work-card" data-type="lp" data-title="掃除機" data-category="LP & Thumbnail" data-img="images/lp-04.jpg" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。">
                 <p class="work-name">掃除機</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="掃除機" data-category="LP & Thumbnail" data-img="images/lp-04.jpg" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。"><img src="images/lp-04.jpg" alt="掃除機 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="掃除機" data-category="LP & Thumbnail" data-img="images/lp-04.jpg" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-04.jpg" alt="掃除機 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
             </div>
             <div class="slider-page">
-              <article class="work-card">
+              <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-05.jpg" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-05.jpg" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。"><img src="images/lp-05.jpg" alt="加湿器 LP・サムネイル" /></button>
-                <button class="detail-btn js-modal-open" type="button" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-img="images/lp-05.jpg" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。">詳細</button>
+                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-05.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
             </div>
           </div>
@@ -760,17 +701,53 @@
         <div class="works-grid grid-banner">
           <div class="slider-track">
             <div class="slider-page">
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-01.jpg" data-text="バナーデザインを担当しました。限られた表示面積の中で、視認性と訴求力を両立できるよう制作しています。"><img src="images/banner-01.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-01.jpg" data-text="バナーデザインを担当しました。限られた表示面積の中で、視認性と訴求力を両立できるよう制作しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-02.jpg" data-text="バナーデザインを担当しました。商品イメージが一目で伝わる構成を意識しています。"><img src="images/banner-02.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-02.jpg" data-text="バナーデザインを担当しました。商品イメージが一目で伝わる構成を意識しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-03.jpg" data-text="バナーデザインを担当しました。ブランドトーンに合わせながら、クリックにつながる見せ方を意識しています。"><img src="images/banner-03.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-03.jpg" data-text="バナーデザインを担当しました。ブランドトーンに合わせながら、クリックにつながる見せ方を意識しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-04.jpg" data-text="バナーデザインを担当しました。季節感と商品の魅力が伝わるよう、色味と余白を調整しています。"><img src="images/banner-04.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-04.jpg" data-text="バナーデザインを担当しました。季節感と商品の魅力が伝わるよう、色味と余白を調整しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-05.jpg" data-text="バナーデザインを担当しました。情報量を絞り、短時間で内容が伝わるよう設計しています。"><img src="images/banner-05.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-05.jpg" data-text="バナーデザインを担当しました。情報量を絞り、短時間で内容が伝わるよう設計しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-06.jpg" data-text="バナーデザインを担当しました。商品画像とコピーのバランスを調整し、視線誘導を意識しています。"><img src="images/banner-06.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-06.jpg" data-text="バナーデザインを担当しました。商品画像とコピーのバランスを調整し、視線誘導を意識しています。">詳細</button></article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-01.jpg" data-text="バナーデザインを担当しました。限られた表示面積の中で、視認性と訴求力を両立できるよう制作しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-01.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-02.jpg" data-text="バナーデザインを担当しました。商品イメージが一目で伝わる構成を意識しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-02.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-03.jpg" data-text="バナーデザインを担当しました。ブランドトーンに合わせながら、クリックにつながる見せ方を意識しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-03.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-04.jpg" data-text="バナーデザインを担当しました。季節感と商品の魅力が伝わるよう、色味と余白を調整しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-04.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-05.jpg" data-text="バナーデザインを担当しました。情報量を絞り、短時間で内容が伝わるよう設計しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-05.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-06.jpg" data-text="バナーデザインを担当しました。商品画像とコピーのバランスを調整し、視線誘導を意識しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-06.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
             </div>
             <div class="slider-page">
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-07.jpg" data-text="バナーデザインを担当しました。訴求内容が埋もれないよう、コントラストと文字サイズを調整しています。"><img src="images/banner-07.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-07.jpg" data-text="バナーデザインを担当しました。訴求内容が埋もれないよう、コントラストと文字サイズを調整しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-08.jpg" data-text="バナーデザインを担当しました。ECサイト内で目に留まりやすいビジュアルを意識しています。"><img src="images/banner-08.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-08.jpg" data-text="バナーデザインを担当しました。ECサイト内で目に留まりやすいビジュアルを意識しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">加湿器</p><button class="work-img banner-img js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-09.jpg" data-text="バナーデザインを担当しました。キャンペーンや導線に合わせて、分かりやすい構成に整えています。"><img src="images/banner-09.jpg" alt="加湿器 バナー" /></button><button class="detail-btn js-modal-open" type="button" data-title="加湿器" data-category="Banner" data-img="images/banner-09.jpg" data-text="バナーデザインを担当しました。キャンペーンや導線に合わせて、分かりやすい構成に整えています。">詳細</button></article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-07.jpg" data-text="バナーデザインを担当しました。訴求内容が埋もれないよう、コントラストと文字サイズを調整しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-07.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-08.jpg" data-text="バナーデザインを担当しました。ECサイト内で目に留まりやすいビジュアルを意識しています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-08.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="加湿器" data-category="Banner" data-img="images/banner-09.jpg" data-text="バナーデザインを担当しました。キャンペーンや導線に合わせて、分かりやすい構成に整えています。">
+                <p class="work-name">加湿器</p>
+                <button class="work-img banner-img js-modal-open" type="button"><img src="images/banner-09.jpg" alt="加湿器 バナー" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
             </div>
           </div>
         </div>
@@ -791,10 +768,26 @@
         <div class="works-grid grid-dtp">
           <div class="slider-track">
             <div class="slider-page">
-              <article class="work-card"><p class="work-name">パッケージ</p><button class="work-img dtp-img js-modal-open" type="button" data-title="パッケージ" data-category="DTP" data-img="images/dtp-01.jpg" data-text="パッケージデザインを担当しました。商品の印象やブランド感が伝わるよう、配色・余白・情報整理を意識しています。"><img src="images/dtp-01.jpg" alt="パッケージ デザイン" /></button><button class="detail-btn js-modal-open" type="button" data-title="パッケージ" data-category="DTP" data-img="images/dtp-01.jpg" data-text="パッケージデザインを担当しました。商品の印象やブランド感が伝わるよう、配色・余白・情報整理を意識しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">フライヤー</p><button class="work-img dtp-img js-modal-open" type="button" data-title="フライヤー" data-category="DTP" data-img="images/dtp-02.jpg" data-text="フライヤーデザインを担当しました。限られた紙面の中で、情報の優先順位が伝わるよう構成しています。"><img src="images/dtp-02.jpg" alt="フライヤー デザイン" /></button><button class="detail-btn js-modal-open" type="button" data-title="フライヤー" data-category="DTP" data-img="images/dtp-02.jpg" data-text="フライヤーデザインを担当しました。限られた紙面の中で、情報の優先順位が伝わるよう構成しています。">詳細</button></article>
-              <article class="work-card"><p class="work-name">名刺</p><button class="work-img dtp-img js-modal-open" type="button" data-title="名刺" data-category="DTP" data-img="images/dtp-03.jpg" data-text="名刺デザインを担当しました。シンプルながら印象に残るよう、文字組みと余白を重視しています。"><img src="images/dtp-03.jpg" alt="名刺 デザイン" /></button><button class="detail-btn js-modal-open" type="button" data-title="名刺" data-category="DTP" data-img="images/dtp-03.jpg" data-text="名刺デザインを担当しました。シンプルながら印象に残るよう、文字組みと余白を重視しています。">詳細</button></article>
-              <article class="work-card sp-only"><p class="work-name">その他</p><button class="work-img dtp-img js-modal-open" type="button" data-title="その他" data-category="DTP" data-img="images/dtp-04.jpg" data-text="DTPデザインを担当しました。用途に合わせて見やすさと印象の残りやすさを調整しています。"><img src="images/dtp-04.jpg" alt="DTP デザイン" /></button><button class="detail-btn js-modal-open" type="button" data-title="その他" data-category="DTP" data-img="images/dtp-04.jpg" data-text="DTPデザインを担当しました。用途に合わせて見やすさと印象の残りやすさを調整しています。">詳細</button></article>
+              <article class="work-card" data-title="パッケージ" data-category="DTP" data-img="images/dtp-01.jpg" data-text="パッケージデザインを担当しました。商品の印象やブランド感が伝わるよう、配色・余白・情報整理を意識しています。">
+                <p class="work-name">パッケージ</p>
+                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-01.jpg" alt="パッケージ デザイン" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="フライヤー" data-category="DTP" data-img="images/dtp-02.jpg" data-text="フライヤーデザインを担当しました。限られた紙面の中で、情報の優先順位が伝わるよう構成しています。">
+                <p class="work-name">フライヤー</p>
+                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-02.jpg" alt="フライヤー デザイン" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card" data-title="名刺" data-category="DTP" data-img="images/dtp-03.jpg" data-text="名刺デザインを担当しました。シンプルながら印象に残るよう、文字組みと余白を重視しています。">
+                <p class="work-name">名刺</p>
+                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-03.jpg" alt="名刺 デザイン" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+              <article class="work-card sp-only" data-title="その他" data-category="DTP" data-img="images/dtp-04.jpg" data-text="DTPデザインを担当しました。用途に合わせて見やすさと印象の残りやすさを調整しています。">
+                <p class="work-name">その他</p>
+                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-04.jpg" alt="DTP デザイン" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
             </div>
           </div>
         </div>
@@ -813,8 +806,16 @@
         </div>
 
         <div class="works-grid grid-web">
-          <article class="work-card"><p class="work-name">ポートフォリオ</p><button class="work-img web-img js-modal-open" type="button" data-title="ポートフォリオ" data-category="WEB Site" data-img="images/web-01.jpg" data-text="ポートフォリオサイトを制作しました。デザインカンプからHTML/CSS/JavaScriptで実装しています。"><img src="images/web-01.jpg" alt="ポートフォリオサイト" /></button><button class="detail-btn js-modal-open" type="button" data-title="ポートフォリオ" data-category="WEB Site" data-img="images/web-01.jpg" data-text="ポートフォリオサイトを制作しました。デザインカンプからHTML/CSS/JavaScriptで実装しています。">詳細</button></article>
-          <article class="work-card"><p class="work-name">AND DECO ブランドサイト</p><button class="work-img web-img js-modal-open" type="button" data-title="AND DECO ブランドサイト" data-category="WEB Site" data-img="images/web-02.jpg" data-text="WEBサイトデザインを担当しました。ブランドの世界観と商品訴求が伝わるよう、全体のトーンを整えています。"><img src="images/web-02.jpg" alt="AND DECO ブランドサイト" /></button><button class="detail-btn js-modal-open" type="button" data-title="AND DECO ブランドサイト" data-category="WEB Site" data-img="images/web-02.jpg" data-text="WEBサイトデザインを担当しました。ブランドの世界観と商品訴求が伝わるよう、全体のトーンを整えています。">詳細</button></article>
+          <article class="work-card" data-title="ポートフォリオ" data-category="WEB Site" data-img="images/web-01.jpg" data-text="ポートフォリオサイトを制作しました。デザインカンプからHTML/CSS/JavaScriptで実装しています。">
+                <p class="work-name">ポートフォリオ</p>
+                <button class="work-img web-img js-modal-open" type="button"><img src="images/web-01.jpg" alt="ポートフォリオサイト" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
+          <article class="work-card" data-title="AND DECO ブランドサイト" data-category="WEB Site" data-img="images/web-02.jpg" data-text="WEBサイトデザインを担当しました。ブランドの世界観と商品訴求が伝わるよう、全体のトーンを整えています。">
+                <p class="work-name">AND DECO ブランドサイト</p>
+                <button class="work-img web-img js-modal-open" type="button"><img src="images/web-02.jpg" alt="AND DECO ブランドサイト" /></button>
+                <button class="detail-btn js-modal-open" type="button">詳細</button>
+              </article>
         </div>
 
         <div class="scope-box">対応範囲：デザイン</div>
@@ -949,13 +950,16 @@
 
     document.querySelectorAll('.js-modal-open').forEach((button) => {
       button.addEventListener('click', () => {
-        const isLp = button.dataset.type === 'lp';
-        const isLargeView = isLp || button.dataset.category === 'WEB Site';
-        const lpImages = button.dataset.images ? button.dataset.images.split(',').map(src => src.trim()).filter(Boolean) : [];
+        const card = button.closest('.work-card');
+        if (!card) return;
 
-        modalTitle.textContent = button.dataset.title || '';
-        modalCategory.textContent = button.dataset.category || '';
-        modalText.textContent = button.dataset.text || '';
+        const isLp = card.dataset.type === 'lp';
+        const isLargeView = isLp || card.dataset.category === 'WEB Site';
+        const lpImages = card.dataset.images ? card.dataset.images.split(',').map(src => src.trim()).filter(Boolean) : [];
+
+        modalTitle.textContent = card.dataset.title || '';
+        modalCategory.textContent = card.dataset.category || '';
+        modalText.textContent = card.dataset.text || '';
 
         modalLpDetail.innerHTML = '';
         modalLpDetail.classList.remove('is-show');
@@ -971,13 +975,13 @@
           lpImages.forEach((src, index) => {
             const img = document.createElement('img');
             img.src = src;
-            img.alt = `${button.dataset.title || 'LP'} 全体画像 ${index + 1}`;
+            img.alt = `${card.dataset.title || 'LP'} 全体画像 ${index + 1}`;
             img.loading = 'lazy';
             modalLpDetail.appendChild(img);
           });
         } else {
-          modalImg.src = button.dataset.img || '';
-          modalImg.alt = button.dataset.title || '';
+          modalImg.src = card.dataset.img || '';
+          modalImg.alt = card.dataset.title || '';
         }
 
         modal.classList.add('is-open');
