@@ -1,453 +1,459 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NISHITANI NATSUKI | Creative Design Portfolio</title>
-  <meta name="description" content="NISHITANI NATSUKIのクリエイティブデザインポートフォリオ。LP、サムネイル、バナー、DTP、WEBサイト制作実績を掲載しています。" />
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet" />
-
-  <style>
-:root { --red: #c91c1c; --red-dark: #aa1212; --gray: #eeeeee; --work-gray: #d8d8d8; --white: #ffffff; --text: #151515; --line: #b9b9b9; --duration: 0.35s; }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--red); }
-body { margin: 0; font-family: "Noto Sans JP", sans-serif; color: var(--text); background: var(--gray); letter-spacing: 0.04em; }
-body.is-modal-open { overflow: hidden; }
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; }
-.en { font-family: "Archivo Black", "Noto Sans JP", sans-serif; font-weight: 900; letter-spacing: -0.03em; }
-.hero { position: relative; height: 100svh; min-height: 100svh; scroll-snap-align: start; scroll-snap-stop: always; background: var(--red); color: var(--white); overflow: hidden; transform: translateZ(0); will-change: transform; }
-.profile-link { position: absolute; top: clamp(24px, 3vw, 42px); right: clamp(24px, 3.5vw, 58px); z-index: 5; display: grid; justify-items: center; gap: 10px; color: var(--white); font-size: 12px; font-weight: 900; letter-spacing: 0.2em; transition: opacity var(--duration), transform var(--duration); }
-.profile-link:hover { opacity: 0.8; transform: translateY(-3px); }
-.profile-thumb { width: clamp(58px, 5vw, 80px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #ddd; }
-.profile-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.hero-inner { height: 100svh; min-height: 100svh; display: grid; place-items: center; padding: 80px 24px; }
-.hero-title-wrap { width: min(850px, 82vw); }
-.hero-logo { margin: 0; }
-.hero-logo img { width: 100%; display: block; }
-.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 180px; background: var(--red); z-index: 2; pointer-events: none; }
-.scroll-sign { position: absolute; z-index: 3; left: 50%; bottom: 0; translate: -50% 0; display: grid; justify-items: center; color: var(--white); }
-.scroll-circle { width: 86px; aspect-ratio: 1; border: 1px solid rgba(255,255,255,0.9); border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
-.scroll-line { width: 1px; height: 74px; background: rgba(255,255,255,0.8); }
-.works-section { min-height: 100dvh; scroll-snap-align: start; scroll-snap-stop: always; padding: clamp(88px, 10vw, 150px) 24px clamp(76px, 8vw, 120px); background: var(--gray); display: grid; align-items: center; }
-.section-inner { width: min(1300px, 100%); margin: 0 auto; }
-.section-heading { text-align: center; color: var(--red); margin-bottom: clamp(56px, 6vw, 86px); }
-.section-title { margin: 0; font-size: clamp(58px, 6vw, 92px); line-height: 0.92; }
-.section-kana { display: block; margin-top: 6px; font-size: 15px; font-weight: 900; letter-spacing: 0.08em; }
-.works-grid { width:100%; display:block; }
-.slider-track { display:grid; gap:clamp(26px, 3vw, 46px); justify-content:center; }
-.slider-page { display:contents; }
-.sp-only { display:none; }
-
-.grid-lp .slider-track { grid-template-columns:repeat(5, minmax(120px, 170px)); align-items:start; }
-.grid-banner .slider-track { grid-template-columns:repeat(4, minmax(220px, 290px)); row-gap:48px; }
-.grid-banner .work-card:nth-of-type(n + 9) { display:none; }
-.grid-dtp .slider-track { grid-template-columns:repeat(3, minmax(220px, 320px)); }
-.grid-dtp .work-card:nth-of-type(n + 4) { display:none; }
-
-.grid-web { display:grid; grid-template-columns:repeat(2, minmax(320px, 520px)); column-gap:clamp(48px, 5vw, 70px); justify-content:center; }
-.work-card { display: grid; justify-items: center; gap: 16px; }
-.work-name { margin: 0 0 -4px; color: var(--red); font-size: 12px; font-weight: 900; line-height: 1; }
-.work-img { width: 100%; padding: 0; border: 0; background: var(--work-gray); overflow: hidden; cursor: pointer; transition: transform var(--duration), box-shadow var(--duration), filter var(--duration); }
-.work-card:hover .work-img { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(0,0,0,0.08); filter: brightness(0.98); }
-.lp-img { aspect-ratio: 3 / 5.25; }
-.lp-set { aspect-ratio: 3 / 8.25; display: grid; grid-template-rows: 0.95fr 2fr; gap: 14px; background: transparent; }
-.lp-set img { width: 100%; height: 100%; object-fit: cover; object-position: top; background: var(--work-gray); }
-/* .banner-img { aspect-ratio: 16 / 16; } */
-.dtp-img { aspect-ratio: 1; }
-.web-img { aspect-ratio: 16 / 8.8; }
-.work-img img { width: 100%; object-fit: cover; object-position: top; }
-.detail-btn { width: 96px; height: 27px; border-radius: 999px; border: 0; background: var(--red); color: var(--white); display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 11px; font-weight: 900; line-height: 1; cursor: pointer; transition: background var(--duration), transform var(--duration); }
-.detail-btn::before { content: "+"; font-size: 15px; line-height: 1; transform: translateY(-1px); }
-.detail-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
-.pager { display: flex; justify-content: center; gap: 14px; margin-top: clamp(34px, 4vw, 48px); }
-.pager-dot { width: 9px; height: 9px; border-radius: 50%; background: #d4d4d4; border: 0; padding: 0; cursor: pointer; transition: background var(--duration), transform var(--duration); }
-.pager-dot.is-active { background: var(--red); transform: scale(1.15); }
-.scope-box { width: min(340px, 100%); min-height: 34px; margin: clamp(58px, 6vw, 82px) auto 0; border: 1px solid var(--line); display: grid; place-items: center; padding: 8px 16px; font-size: 12px; font-weight: 700; color: #555; }
-.modal { position: fixed; inset: 0; z-index: 9999; opacity: 0; visibility: hidden; pointer-events: none; overflow-y: auto; overscroll-behavior: contain; transition: opacity 0.35s ease, visibility 0.35s ease; }
-.modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
-.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.68); cursor: pointer; opacity: 0; transition: opacity 0.35s ease; }
-.modal.is-open .modal-bg { opacity: 1; }
-.modal-content { position: relative; z-index: 2; width: min(980px, calc(100% - 40px)); margin: clamp(88px, 8vw, 120px) auto 80px; background: var(--gray); color: var(--text); padding: clamp(34px, 5vw, 60px); border-radius: 28px; overflow: visible; box-shadow: 0 22px 60px rgba(0,0,0,0.22); opacity: 0; transform: translateY(24px); transition: transform 0.4s ease, opacity 0.4s ease; }
-.modal.is-open .modal-content { opacity: 1; transform: translateY(0); }
-.modal-content.is-page { width: min(1080px, calc(100% - 40px)); }
-.modal-content.is-compact { width: min(860px, calc(100% - 40px)); margin-top: clamp(100px, 12vw, 150px); }
-.modal-close { position: sticky; top: max(18px, env(safe-area-inset-top)); margin-left: auto; z-index: 10; width: 58px; height: 58px; border: 0; border-radius: 16px; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); color: #111; display: grid; place-items: center; font-size: 38px; line-height: 1; cursor: pointer; transition: transform var(--duration), opacity var(--duration), background var(--duration); }
-.modal-close:hover { transform: scale(1.06); opacity: 0.9; background: rgba(255,255,255,1); }
-.modal-category { margin: 0 0 8px; color: var(--red); text-align: center; font-size: 12px; font-weight: 900; letter-spacing: 0.15em; }
-.modal-title { margin: 0 0 24px; color: var(--red); text-align: center; font-size: clamp(34px, 5vw, 68px); line-height: 1; }
-.modal-text { margin: 0 auto 32px; max-width: 720px; font-size: 14px; font-weight: 700; line-height: 2; text-align: center; }
-.modal-img { width: 100%; max-height: none; object-fit: contain; background: var(--work-gray); border-radius: 18px; }
-.modal-content.is-compact .modal-img { max-height: 70dvh; }
-.modal-lp-detail { display: none; width: min(450px, 100%); margin: 0 auto; background: var(--white); overflow: hidden; }
-.modal-lp-detail.is-show { display: grid; gap: 0; }
-.modal-lp-detail img { width: 100%; height: auto; display: block; }
-.footer { height: 92px; scroll-snap-align: end; background: var(--red); color: var(--white); display: grid; place-items: center; padding: 24px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
-.modal-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:0 auto 32px; }
-.modal-tags span { padding:8px 14px; border:1px solid var(--line); border-radius:999px; font-size:11px; font-weight:700; color:#555; background:var(--white); }
-
-@media (min-width: 761px) { html { scroll-snap-type: y mandatory; } }
-
-@media (max-width: 1100px) {
-  .grid-lp .slider-track { grid-template-columns:repeat(3, minmax(130px, 180px)); }
-  .grid-banner .slider-track, .grid-dtp .slider-track { grid-template-columns:repeat(2, minmax(220px, 320px)); }
-}
-
-@media (max-width: 760px) {
-  html, body { background: var(--gray); scroll-snap-type: none; }
-  .profile-link { top: 18px; right: 18px; font-size: 10px; }
-  .hero, .hero-inner { height: 100svh; min-height: 100svh; }
-  .hero-title-wrap { width: min(430px, 88vw); }
-  .scroll-circle { width: 68px; font-size: 10px; }
-  .scroll-line { height: 52px; }
-  .works-section { min-height: 100svh; padding: 64px 0 48px; }
-  #lp { padding-top: 120px; }
-  .section-inner { width: 100%; overflow: hidden; }
-  .section-heading { margin-bottom: 38px; padding: 0 24px; }
-  .section-title { font-size: clamp(44px, 12vw, 70px); }
-  .section-kana { font-size: 12px; }
-  .works-grid { display:block; width:100%; }
-  .grid-banner .work-card:nth-of-type(n + 9) { display:grid; }
-.slider-track { display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; scroll-padding-left:24px; -webkit-overflow-scrolling:touch; padding:0 24px 6px; scrollbar-width:none; justify-content:flex-start; }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NISHITANI NATSUKI | Creative Design Portfolio</title>
+<meta content="NISHITANI NATSUKIのクリエイティブデザインポートフォリオ。LP、サムネイル、バナー、DTP、WEBサイト制作実績を掲載しています。" name="description"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Noto+Sans+JP:wght@500;700;900&amp;display=swap" rel="stylesheet"/>
+<style>
+:root { --red:#c91c1c; --red-dark:#aa1212; --gray:#eeeeee; --work-gray:#d8d8d8; --white:#ffffff; --text:#151515; --line:#b9b9b9; --duration:0.35s; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; background:var(--red); }
+body { margin:0; font-family:"Noto Sans JP", sans-serif; color:var(--text); background:var(--gray); letter-spacing:0.04em; }
+body.is-modal-open { overflow:hidden; }
+img { max-width:100%; display:block; }
+a { color:inherit; text-decoration:none; }
+button { font-family:inherit; }
+.en { font-family:"Archivo Black", "Noto Sans JP", sans-serif; font-weight:900; letter-spacing:-0.03em; }
+.hero { position:relative; height:100svh; min-height:100svh; scroll-snap-align:start; scroll-snap-stop:always; background:var(--red); color:var(--white); overflow:hidden; transform:translateZ(0); will-change:transform; }
+.profile-link { position:absolute; top:clamp(24px, 3vw, 42px); right:clamp(24px, 3.5vw, 58px); z-index:5; display:grid; justify-items:center; gap:10px; color:var(--white); font-size:12px; font-weight:900; letter-spacing:0.2em; transition:opacity var(--duration), transform var(--duration); }
+.profile-link:hover { opacity:0.8; transform:translateY(-3px); }
+.profile-thumb { width:clamp(58px, 5vw, 80px); aspect-ratio:1; border-radius:50%; overflow:hidden; background:#ddd; }
+.profile-thumb img { width:100%; height:100%; object-fit:cover; }
+.hero-inner { height:100svh; min-height:100svh; display:grid; place-items:center; padding:80px 24px; }
+.hero-title-wrap { width:min(850px, 82vw); }
+.hero-logo { margin:0; }
+.hero-logo img { width:100%; display:block; }
+.hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:180px; background:var(--red); z-index:2; pointer-events:none; }
+.scroll-sign { position:absolute; z-index:3; left:50%; bottom:0; translate:-50% 0; display:grid; justify-items:center; color:var(--white); }
+.scroll-circle { width:86px; aspect-ratio:1; border:1px solid rgba(255,255,255,0.9); border-radius:50%; display:grid; place-items:center; font-size:12px; font-weight:700; }
+.scroll-line { width:1px; height:74px; background:rgba(255,255,255,0.8); }
+.works-section { min-height:100dvh; scroll-snap-align:start; scroll-snap-stop:always; padding:clamp(88px, 10vw, 150px) 24px clamp(76px, 8vw, 120px); background:var(--gray); display:grid; align-items:center; }
+.section-inner { width:min(1300px, 100%); margin:0 auto; }
+.section-heading { text-align:center; color:var(--red); margin-bottom:clamp(56px, 6vw, 86px); }
+.section-title { margin:0; font-size:clamp(58px, 6vw, 92px); line-height:0.92; }
+.section-kana { display:block; margin-top:6px; font-size:15px; font-weight:900; letter-spacing:0.08em; }
+.works-grid { width:100%; display:block; overflow:hidden; }
+.slider-track { --slide-gap:clamp(26px, 3vw, 46px); display:flex; gap:var(--slide-gap); overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0 2px 8px; justify-content:flex-start; }
 .slider-track::-webkit-scrollbar { display:none; }
 .slider-page { display:contents; }
-.grid-lp .work-card, .grid-banner .work-card, .grid-dtp .work-card { flex:0 0 calc((100vw - 72px) / 2); scroll-snap-align:start; }
-.sp-only { display:grid; }
-.grid-dtp .work-card:nth-of-type(n + 4) { display:grid; }
-.grid-web { display:grid; grid-template-columns:1fr; width:min(520px, calc(100% - 48px)); margin:0 auto; gap:34px; }
-  .detail-btn { width: 88px; height: 26px; }
-  .pager { margin-top: 30px; }
-  .scope-box { margin-top: 42px; width: min(340px, calc(100% - 48px)); }
-  .modal-content { width: calc(100% - 32px); margin: 84px auto 64px; padding: 32px 18px 30px; }
-  .modal-content.is-page, .modal-content.is-compact { width: calc(100% - 32px); }
-  .modal-close { top: max(14px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); width: 56px; height: 56px; font-size: 36px; }
-  .modal-img, .modal-content.is-compact .modal-img { max-height: none; }
-  .modal-text { text-align: left; font-size: 13px; }
-  .modal-lp-detail { width: 100%; }
-  .modal-lp-detail, .modal-img { border-radius: 14px; }
-}
-
-@media (max-width: 480px) { .hero-subtitle { font-size: 14px; letter-spacing: 0.16em; } }
+.work-card { display:grid; justify-items:center; gap:16px; flex:0 0 auto; scroll-snap-align:start; }
+.grid-lp .work-card { width:min(170px, calc((100% - 4 * var(--slide-gap)) / 5)); min-width:120px; }
+.grid-banner .work-card { width:calc((100% - 3 * var(--slide-gap)) / 4); min-width:220px; }
+.grid-dtp .work-card { width:calc((100% - 2 * var(--slide-gap)) / 3); min-width:220px; }
+.grid-dtp .work-card:nth-of-type(n + 4) { display:none; }
+.grid-web { display:flex; gap:clamp(48px, 5vw, 70px); overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; justify-content:flex-start; }
+.grid-web::-webkit-scrollbar { display:none; }
+.grid-web .work-card { width:calc((100% - 70px) / 2); min-width:320px; scroll-snap-align:start; }
+.sp-only { display:none; }
+.work-name { margin:0 0 -4px; color:var(--red); font-size:12px; font-weight:900; line-height:1; }
+.work-img { width:100%; padding:0; border:0; background:var(--work-gray); overflow:hidden; cursor:pointer; transition:transform var(--duration), box-shadow var(--duration), filter var(--duration); }
+.work-card:hover .work-img { transform:translateY(-6px); box-shadow:0 14px 30px rgba(0,0,0,0.08); filter:brightness(0.98); }
+.lp-img { aspect-ratio:3 / 5.25; }
+.lp-set { aspect-ratio:3 / 8.25; display:grid; grid-template-rows:0.95fr 2fr; gap:14px; background:transparent; }
+.lp-set img { width:100%; height:100%; object-fit:cover; object-position:top; background:var(--work-gray); }
+.banner-img img { width:100%; height:auto; }
+.dtp-img { aspect-ratio:1; }
+.web-img { aspect-ratio:16 / 8.8; }
+.work-img img { width:100%; object-fit:cover; object-position:top; }
+.dtp-img img, .web-img img { height:100%; }
+.detail-btn { width:96px; height:27px; border-radius:999px; border:0; background:var(--red); color:var(--white); display:inline-flex; align-items:center; justify-content:center; gap:12px; font-size:11px; font-weight:900; line-height:1; cursor:pointer; transition:background var(--duration), transform var(--duration); }
+.detail-btn::before { content:"+"; font-size:15px; line-height:1; transform:translateY(-1px); }
+.detail-btn:hover { background:var(--red-dark); transform:translateY(-2px); }
+.pager { display:flex; justify-content:center; gap:14px; margin-top:clamp(34px, 4vw, 48px); }
+.pager-dot { width:9px; height:9px; border-radius:50%; background:#d4d4d4; border:0; padding:0; cursor:pointer; transition:background var(--duration), transform var(--duration); }
+.pager-dot.is-active { background:var(--red); transform:scale(1.15); }
+.scope-box { width:min(340px, 100%); min-height:34px; margin:clamp(58px, 6vw, 82px) auto 0; border:1px solid var(--line); display:grid; place-items:center; padding:8px 16px; font-size:12px; font-weight:700; color:#555; }
+.modal { position:fixed; inset:0; z-index:9999; opacity:0; visibility:hidden; pointer-events:none; overflow-y:auto; overscroll-behavior:contain; transition:opacity 0.35s ease, visibility 0.35s ease; }
+.modal.is-open { opacity:1; visibility:visible; pointer-events:auto; }
+.modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.68); cursor:pointer; opacity:0; transition:opacity 0.35s ease; }
+.modal.is-open .modal-bg { opacity:1; }
+.modal-content { position:relative; z-index:2; width:min(980px, calc(100% - 40px)); margin:clamp(88px, 8vw, 120px) auto 80px; background:var(--gray); color:var(--text); padding:clamp(34px, 5vw, 60px); border-radius:28px; overflow:visible; box-shadow:0 22px 60px rgba(0,0,0,0.22); opacity:0; transform:translateY(24px); transition:transform 0.4s ease, opacity 0.4s ease; }
+.modal.is-open .modal-content { opacity:1; transform:translateY(0); }
+.modal-content.is-page { width:min(1080px, calc(100% - 40px)); }
+.modal-content.is-compact { width:min(860px, calc(100% - 40px)); margin-top:clamp(100px, 12vw, 150px); }
+.modal-close { position:sticky; top:max(18px, env(safe-area-inset-top)); margin-left:auto; z-index:10; width:58px; height:58px; border:0; border-radius:16px; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); color:#111; display:grid; place-items:center; font-size:38px; line-height:1; cursor:pointer; transition:transform var(--duration), opacity var(--duration), background var(--duration); }
+.modal-close:hover { transform:scale(1.06); opacity:0.9; background:rgba(255,255,255,1); }
+.modal-category { margin:0 0 8px; color:var(--red); text-align:center; font-size:12px; font-weight:900; letter-spacing:0.15em; }
+.modal-title { margin:0 0 24px; color:var(--red); text-align:center; font-size:clamp(34px, 5vw, 68px); line-height:1; }
+.modal-text { margin:0 auto 24px; max-width:720px; font-size:14px; font-weight:700; line-height:2; text-align:center; white-space:pre-line; }
+.modal-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:0 auto 32px; }
+.modal-tags span { padding:8px 14px; border:1px solid var(--line); border-radius:999px; font-size:11px; font-weight:700; color:#555; background:var(--white); }
+.modal-img { width:100%; max-height:none; object-fit:contain; background:var(--work-gray); border-radius:18px; }
+.modal-content.is-compact .modal-img { max-height:70dvh; }
+.modal-lp-detail { display:none; width:min(450px, 100%); margin:0 auto; background:var(--white); overflow:hidden; }
+.modal-lp-detail.is-show { display:grid; gap:0; }
+.modal-lp-detail img { width:100%; height:auto; display:block; }
+.footer { height:92px; scroll-snap-align:end; background:var(--red); color:var(--white); display:grid; place-items:center; padding:24px; text-align:center; font-size:10px; font-weight:700; letter-spacing:0.08em; }
+@media (min-width:761px) { html { scroll-snap-type:y mandatory; } }
+@media (max-width:1100px) { .grid-lp .work-card { width:180px; } .grid-banner .work-card, .grid-dtp .work-card { width:calc((100% - var(--slide-gap)) / 2); } }
+@media (max-width:760px) { html, body { background:var(--gray); scroll-snap-type:none; } .profile-link { top:18px; right:18px; font-size:10px; } .hero, .hero-inner { height:100svh; min-height:100svh; } .hero-title-wrap { width:min(430px, 88vw); } .scroll-circle { width:68px; font-size:10px; } .scroll-line { height:52px; } .works-section { min-height:100svh; padding:64px 0 48px; } #lp { padding-top:120px; } .section-inner { width:100%; overflow:hidden; } .section-heading { margin-bottom:38px; padding:0 24px; } .section-title { font-size:clamp(44px, 12vw, 70px); } .section-kana { font-size:12px; } .slider-track { --slide-gap:24px; padding:0 24px 6px; scroll-padding-left:24px; } .grid-lp .work-card, .grid-banner .work-card, .grid-dtp .work-card { width:calc((100vw - 72px) / 2); min-width:0; } .sp-only { display:grid; } .grid-dtp .work-card:nth-of-type(n + 4) { display:grid; } .grid-web { width:100%; padding:0 24px 6px; gap:24px; } .grid-web .work-card { width:calc(100vw - 72px); min-width:0; } .detail-btn { width:88px; height:26px; } .pager { margin-top:30px; } .scope-box { margin-top:42px; width:min(340px, calc(100% - 48px)); } .modal-content { width:calc(100% - 32px); margin:84px auto 64px; padding:32px 18px 30px; } .modal-content.is-page, .modal-content.is-compact { width:calc(100% - 32px); } .modal-close { top:max(14px, env(safe-area-inset-top)); right:max(14px, env(safe-area-inset-right)); width:56px; height:56px; font-size:36px; } .modal-img, .modal-content.is-compact .modal-img { max-height:none; } .modal-text { text-align:left; font-size:13px; } .modal-tags { justify-content:flex-start; } .modal-lp-detail { width:100%; } .modal-lp-detail, .modal-img { border-radius:14px; } }
+@media (max-width:480px) { .hero-subtitle { font-size:14px; letter-spacing:0.16em; } }
 </style>
 </head>
 <body>
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <a class="profile-link" href="#profile" aria-label="プロフィールへ移動">
-        <span class="profile-thumb">
-          <img src="images/profile.jpg" alt="プロフィール写真" />
-        </span>
-        <span class="en">PROFILE</span>
-      </a>
+<main>
+<!-- HERO -->
+<section class="hero" id="top">
+<a aria-label="プロフィールへ移動" class="profile-link" href="#profile">
+<span class="profile-thumb">
+<img alt="プロフィール写真" src="images/profile.jpg"/>
+</span>
+<span class="en">PROFILE</span>
+</a>
+<div class="hero-inner">
+<div class="hero-title-wrap">
+<h1 class="hero-logo">
+<img alt="portfolio" src="images/fv-logo.png"/>
+</h1>
+</div>
+</div>
+<a aria-label="制作実績へ移動" class="scroll-sign" href="#lp">
+<span class="scroll-circle en">SCROLL</span>
+<span class="scroll-line"></span>
+</a>
+</section>
+<!-- LP & THUMBNAIL -->
+<section class="works-section" id="lp">
+<div class="section-inner">
+<div class="section-heading">
+<h2 class="section-title en">LP &amp; Thumbnail</h2>
+<span class="section-kana">ランディングページ &amp; サムネイル</span>
+</div>
+<div class="works-grid grid-lp">
+<div class="slider-track">
 
-      <div class="hero-inner">
-        <div class="hero-title-wrap">
-          <h1 class="hero-logo">
-            <img src="images/fv-logo.png" alt="portfolio">
-          </h1>
-        </div>
-      </div>
 
-      <a class="scroll-sign" href="#lp" aria-label="制作実績へ移動">
-        <span class="scroll-circle en">SCROLL</span>
-        <span class="scroll-line"></span>
-      </a>
-    </section>
+<article class="work-card" data-category="LP &amp; Thumbnail" data-images="images/yy02_1_02.webp,images/yy02_1_03.webp,images/yy02_1_02.gif,images/yy02_1_05.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.webp,images/yy02_2_05.webp,images/yy02_2_04.gif,images/yy02_3_01.webp,images/yy02_3_02.webp,images/yy02_3_03.webp,images/yy02_3_04.webp,images/yy02_3_05.webp,images/yy02_3_06.webp,images/yy02_4_01.webp,images/yy02_4_02.webp,images/yy02_4_03.webp,images/yy02_4_04.webp,images/yy02_4_05.webp" data-tags="構成設計,デザイン,演出制作" data-text="毎年ブラッシュアップを重ねながら展開されている定番商品のLP制作を担当しました。近年は低価格帯の商品も増えているカテゴリーのため、単なる価格訴求ではなく、ブランドとしての信頼感や品質感が伝わる見せ方を重視しています。ページ全体は余白を活かしたレイアウトにすることで、プロダクト自体が引き立つよう設計。また、サーキュレーター特有の“空気を循環させる心地よさ”が伝わるよう、空間全体の空気感を感じられる引き気味のビジュアルを要所に配置しています。商品の特徴である360°回転は、ページ上部にGIFを使用して直感的に伝わる構成に。一方で、楽天掲載を想定し、表示速度に影響が出ないようGIFサイズや使用数は最小限に抑えながら設計しています。" data-title="サーキュレーター" data-type="lp">
+<p class="work-name">サーキュレーター</p>
+<button class="work-img lp-set js-modal-open" type="button"><img alt="サーキュレーター サムネイル" class="lp-thumb-img" src="images/yy02_th.jpg"><img alt="サーキュレーター LP" class="lp-page-img" src="images/yy02_1_02.webp"/></img></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="LP &amp; Thumbnail" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-tags="構成設計,デザイン,演出制作" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。" data-title="加湿器" data-type="lp">
+<p class="work-name">加湿器</p>
+<button class="work-img lp-set js-modal-open" type="button"><img alt="加湿器 サムネイル" class="lp-thumb-img" src="images/lp-02.jpg"/><img alt="加湿器 LP" class="lp-page-img" src="images/lp-02-01.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="LP &amp; Thumbnail" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-tags="構成設計,デザイン,演出制作" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。" data-title="加湿器" data-type="lp">
+<p class="work-name">加湿器</p>
+<button class="work-img lp-set js-modal-open" type="button"><img alt="加湿器 サムネイル" class="lp-thumb-img" src="images/lp-02.jpg"/><img alt="加湿器 LP" class="lp-page-img" src="images/lp-02-01.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="LP &amp; Thumbnail" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-tags="構成設計,デザイン,演出制作" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。" data-title="掃除機" data-type="lp">
+<p class="work-name">掃除機</p>
+<button class="work-img lp-set js-modal-open" type="button"><img alt="加湿器 サムネイル" class="lp-thumb-img" src="images/lp-02.jpg"/><img alt="加湿器 LP" class="lp-page-img" src="images/lp-02-01.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="LP &amp; Thumbnail" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-tags="構成設計,デザイン,演出制作" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。" data-title="加湿器" data-type="lp">
+<p class="work-name">加湿器</p>
+<button class="work-img lp-set js-modal-open" type="button"><img alt="加湿器 サムネイル" class="lp-thumb-img" src="images/lp-02.jpg"/><img alt="加湿器 LP" class="lp-page-img" src="images/lp-02-01.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+</div>
+</div>
+<div aria-label="LP &amp; Thumbnail スライド切り替え" class="pager"><button aria-label="1枚目" class="pager-dot is-active" type="button"></button><button aria-label="2枚目" class="pager-dot" type="button"></button><button aria-label="3枚目" class="pager-dot" type="button"></button></div>
+</div>
+</section>
+<!-- BANNER -->
+<section class="works-section" id="banner">
+<div class="section-inner">
+<div class="section-heading">
+<h2 class="section-title en">Banner</h2>
+<span class="section-kana">バナー</span>
+</div>
+<div class="works-grid grid-banner">
+<div class="slider-track">
 
-    <!-- LP & THUMBNAIL -->
-    <section class="works-section" id="lp">
-      <div class="section-inner">
-        <div class="section-heading">
-          <h2 class="section-title en">LP &amp; Thumbnail</h2>
-          <span class="section-kana">ランディングページ &amp; サムネイル</span>
-        </div>
 
-        <div class="works-grid grid-lp">
-          <div class="slider-track">
-            <div class="slider-track">
-              <article class="work-card" data-type="lp" data-title="サーキュレーター" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/yy02_1_02.webp,images/yy02_1_03.webp,images/yy02_1_02.gif,images/yy02_1_05.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.webp,images/yy02_2_05.webp,images/yy02_2_04.gif,images/yy02_3_01.webp,images/yy02_3_02.webp,images/yy02_3_03.webp,images/yy02_3_04.webp,images/yy02_3_05.webp,images/yy02_3_06.webp,images/yy02_4_01.webp,images/yy02_4_02.webp,images/yy02_4_03.webp,images/yy02_4_04.webp,images/yy02_4_05.webp" data-text="毎年ブラッシュアップを重ねながら展開されている定番商品のLP制作を担当しました。近年は低価格帯の商品も増えているカテゴリーのため、単なる価格訴求ではなく、ブランドとしての信頼感や品質感が伝わる見せ方を重視しています。ページ全体は余白を活かしたレイアウトにすることで、プロダクト自体が引き立つよう設計。また、サーキュレーター特有の“空気を循環させる心地よさ”が伝わるよう、空間全体の空気感を感じられる引き気味のビジュアルを要所に配置しています。商品の特徴である360°回転は、ページ上部にGIFを使用して直感的に伝わる構成に。一方で、楽天掲載を想定し、表示速度に影響が出ないようGIFサイズや使用数は最小限に抑えながら設計しています。">
-                <p class="work-name">サーキュレーター</p>
-                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/yy02_th.jpg" alt="サーキュレーター サムネイル" /><img class="lp-page-img" src="images/yy02_1_02.webp" alt="サーキュレーター LP" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-type="lp" data-title="掃除機" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。">
-                <p class="work-name">掃除機</p>
-                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-            </div>
-          </div>
-        </div>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。限られた表示面積の中で、視認性と訴求力を両立できるよう制作しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_sofabed_layout.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。商品イメージが一目で伝わる構成を意識しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_sale_special.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。ブランドトーンに合わせながら、クリックにつながる見せ方を意識しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_stoneandash.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。季節感と商品の魅力が伝わるよう、色味と余白を調整しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_newitem_release.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。情報量を絞り、短時間で内容が伝わるよう設計しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_outdoor_collection.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。商品画像とコピーのバランスを調整し、視線誘導を意識しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_humidifier_collection.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。訴求内容が埋もれないよう、コントラストと文字サイズを調整しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_turf_collection.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。ECサイト内で目に留まりやすいビジュアルを意識しています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_winter_collection.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="Banner" data-text="バナーデザインを担当しました。キャンペーンや導線に合わせて、分かりやすい構成に整えています。" data-title="加湿器">
+<p class="work-name">加湿器</p>
+<button class="work-img banner-img js-modal-open" type="button"><img alt="加湿器 バナー" src="images/md_bn_quickdelivery.webp"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+</div>
+</div>
+<div aria-label="Banner スライド切り替え" class="pager"><button aria-label="1枚目" class="pager-dot is-active" type="button"></button><button aria-label="2枚目" class="pager-dot" type="button"></button></div>
+</div>
+</section>
+<!-- DTP -->
+<section class="works-section" id="dtp">
+<div class="section-inner">
+<div class="section-heading">
+<h2 class="section-title en">DTP</h2>
+<span class="section-kana">印刷物</span>
+</div>
+<div class="works-grid grid-dtp">
+<div class="slider-track">
 
-        <div class="pager" aria-label="LP & Thumbnail スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button><button class="pager-dot" type="button" aria-label="2枚目"></button><button class="pager-dot" type="button" aria-label="3枚目"></button></div>
-      </div>
-    </section>
 
-    <!-- BANNER -->
-    <section class="works-section" id="banner">
-      <div class="section-inner">
-        <div class="section-heading">
-          <h2 class="section-title en">Banner</h2>
-          <span class="section-kana">バナー</span>
-        </div>
+<article class="work-card" data-category="DTP" data-text="パッケージデザインを担当しました。商品の印象やブランド感が伝わるよう、配色・余白・情報整理を意識しています。" data-title="パッケージ">
+<p class="work-name">パッケージ</p>
+<button class="work-img dtp-img js-modal-open" type="button"><img alt="パッケージ デザイン" src="images/dtp-01.jpg"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="DTP" data-text="フライヤーデザインを担当しました。限られた紙面の中で、情報の優先順位が伝わるよう構成しています。" data-title="フライヤー">
+<p class="work-name">フライヤー</p>
+<button class="work-img dtp-img js-modal-open" type="button"><img alt="フライヤー デザイン" src="images/dtp-02.jpg"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="DTP" data-text="名刺デザインを担当しました。シンプルながら印象に残るよう、文字組みと余白を重視しています。" data-title="名刺">
+<p class="work-name">名刺</p>
+<button class="work-img dtp-img js-modal-open" type="button"><img alt="名刺 デザイン" src="images/dtp-03.jpg"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card sp-only" data-category="DTP" data-text="DTPデザインを担当しました。用途に合わせて見やすさと印象の残りやすさを調整しています。" data-title="その他">
+<p class="work-name">その他</p>
+<button class="work-img dtp-img js-modal-open" type="button"><img alt="DTP デザイン" src="images/dtp-04.jpg"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+</div>
+</div>
+<div aria-label="DTP スライド切り替え" class="pager"><button aria-label="1枚目" class="pager-dot is-active" type="button"></button></div>
+</div>
+</section>
+<!-- WEB SITE -->
+<section class="works-section" id="web">
+<div class="section-inner">
+<div class="section-heading">
+<h2 class="section-title en">WEB Site</h2>
+<span class="section-kana">WEBサイト</span>
+</div>
+<div class="works-grid grid-web">
+<article class="work-card" data-category="WEB Site" data-text="ポートフォリオサイトを制作しました。デザインカンプからHTML/CSS/JavaScriptで実装しています。" data-title="ポートフォリオ">
+<p class="work-name">ポートフォリオ</p>
+<button class="work-img web-img js-modal-open" type="button"><img alt="ポートフォリオサイト" src="images/web-01.jpg"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+<article class="work-card" data-category="WEB Site" data-text="WEBサイトデザインを担当しました。ブランドの世界観と商品訴求が伝わるよう、全体のトーンを整えています。" data-title="AND DECO ブランドサイト">
+<p class="work-name">AND DECO ブランドサイト</p>
+<button class="work-img web-img js-modal-open" type="button"><img alt="AND DECO ブランドサイト" src="images/web-02.jpg"/></button>
+<button class="detail-btn js-modal-open" type="button">詳細</button>
+</article>
+</div>
+</div>
+</section>
+<!-- PROFILE 仮置き -->
+<section class="works-section" id="profile">
+<div class="section-inner">
+<div class="section-heading">
+<h2 class="section-title en">Profile</h2>
+<span class="section-kana">プロフィール</span>
+</div>
+<div class="scope-box">プロフィール内容はここに追加</div>
+</div>
+</section>
+</main>
+<!-- MODAL -->
+<div aria-hidden="true" class="modal" id="workModal">
+<div class="modal-bg js-modal-close"></div>
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal-content" id="modalContent" role="dialog">
+<button aria-label="閉じる" class="modal-close js-modal-close" type="button">×</button>
+<p class="modal-category" id="modalCategory"></p>
+<h3 class="modal-title en" id="modalTitle"></h3>
+<p class="modal-text" id="modalText"></p>
+<div class="modal-tags" id="modalTags"></div>
+<img alt="" class="modal-img" id="modalImg" src=""/>
+<div class="modal-lp-detail" id="modalLpDetail"></div>
+</div>
+</div>
+<footer class="footer">
+<small>© 2026  NISHITANI NATSUKI'S CREATIVE DESIGN PORTFOLIO</small>
+</footer>
 
-        <div class="works-grid grid-banner">
-          <div class="slider-track">
-            <div class="slider-track">
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。限られた表示面積の中で、視認性と訴求力を両立できるよう制作しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_sofabed_layout.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。商品イメージが一目で伝わる構成を意識しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_sale_special.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。ブランドトーンに合わせながら、クリックにつながる見せ方を意識しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_stoneandash.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。季節感と商品の魅力が伝わるよう、色味と余白を調整しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_newitem_release.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。情報量を絞り、短時間で内容が伝わるよう設計しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_outdoor_collection.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。商品画像とコピーのバランスを調整し、視線誘導を意識しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_humidifier_collection.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。訴求内容が埋もれないよう、コントラストと文字サイズを調整しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_turf_collection.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。ECサイト内で目に留まりやすいビジュアルを意識しています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_winter_collection.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。キャンペーンや導線に合わせて、分かりやすい構成に整えています。">
-                <p class="work-name">加湿器</p>
-                <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_quickdelivery.webp" alt="加湿器 バナー" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-            </div>
-          </div>
-        </div>
+<script>
+// PC/SP共通スライダー＋ドット
+function initWorkSliders() {
+  document.querySelectorAll('.works-grid').forEach((slider) => {
+    const track = slider.querySelector('.slider-track');
+    const pager = slider.parentElement.querySelector('.pager');
+    if (!track || !pager) return;
 
-        <div class="pager" aria-label="Banner スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button><button class="pager-dot" type="button" aria-label="2枚目"></button></div>
-      </div>
-    </section>
+    const getCards = () => Array.from(track.querySelectorAll(':scope > .work-card')).filter((card) => window.getComputedStyle(card).display !== 'none');
+    const isSp = () => window.matchMedia('(max-width: 760px)').matches;
+    const getPerPage = () => {
+      if (isSp()) return slider.classList.contains('grid-web') ? 1 : 2;
+      if (slider.classList.contains('grid-lp')) return 5;
+      if (slider.classList.contains('grid-banner')) return 4;
+      if (slider.classList.contains('grid-dtp')) return 3;
+      return 2;
+    };
 
-    <!-- DTP -->
-    <section class="works-section" id="dtp">
-      <div class="section-inner">
-        <div class="section-heading">
-          <h2 class="section-title en">DTP</h2>
-          <span class="section-kana">印刷物</span>
-        </div>
+    let currentPage = 0;
+    let ticking = false;
 
-        <div class="works-grid grid-dtp">
-          <div class="slider-track">
-            <div class="slider-track">
-              <article class="work-card" data-title="パッケージ" data-category="DTP" data-text="パッケージデザインを担当しました。商品の印象やブランド感が伝わるよう、配色・余白・情報整理を意識しています。">
-                <p class="work-name">パッケージ</p>
-                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-01.jpg" alt="パッケージ デザイン" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="フライヤー" data-category="DTP" data-text="フライヤーデザインを担当しました。限られた紙面の中で、情報の優先順位が伝わるよう構成しています。">
-                <p class="work-name">フライヤー</p>
-                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-02.jpg" alt="フライヤー デザイン" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card" data-title="名刺" data-category="DTP" data-text="名刺デザインを担当しました。シンプルながら印象に残るよう、文字組みと余白を重視しています。">
-                <p class="work-name">名刺</p>
-                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-03.jpg" alt="名刺 デザイン" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-              <article class="work-card sp-only" data-title="その他" data-category="DTP" data-text="DTPデザインを担当しました。用途に合わせて見やすさと印象の残りやすさを調整しています。">
-                <p class="work-name">その他</p>
-                <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-04.jpg" alt="DTP デザイン" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-            </div>
-          </div>
-        </div>
-
-        <div class="pager" aria-label="DTP スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button></div>
-      </div>
-    </section>
-
-    <!-- WEB SITE -->
-    <section class="works-section" id="web">
-      <div class="section-inner">
-        <div class="section-heading">
-          <h2 class="section-title en">WEB Site</h2>
-          <span class="section-kana">WEBサイト</span>
-        </div>
-
-        <div class="works-grid grid-web">
-          <article class="work-card" data-title="ポートフォリオ" data-category="WEB Site" data-text="ポートフォリオサイトを制作しました。デザインカンプからHTML/CSS/JavaScriptで実装しています。">
-                <p class="work-name">ポートフォリオ</p>
-                <button class="work-img web-img js-modal-open" type="button"><img src="images/web-01.jpg" alt="ポートフォリオサイト" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-          <article class="work-card" data-title="AND DECO ブランドサイト" data-category="WEB Site" data-text="WEBサイトデザインを担当しました。ブランドの世界観と商品訴求が伝わるよう、全体のトーンを整えています。">
-                <p class="work-name">AND DECO ブランドサイト</p>
-                <button class="work-img web-img js-modal-open" type="button"><img src="images/web-02.jpg" alt="AND DECO ブランドサイト" /></button>
-                <button class="detail-btn js-modal-open" type="button">詳細</button>
-              </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROFILE 仮置き -->
-    <section class="works-section" id="profile">
-      <div class="section-inner">
-        <div class="section-heading">
-          <h2 class="section-title en">Profile</h2>
-          <span class="section-kana">プロフィール</span>
-        </div>
-        <div class="scope-box">プロフィール内容はここに追加</div>
-      </div>
-    </section>
-  </main>
-
-  <!-- MODAL -->
-  <div class="modal" id="workModal" aria-hidden="true">
-    <div class="modal-bg js-modal-close"></div>
-    <div class="modal-content" id="modalContent" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button class="modal-close js-modal-close" type="button" aria-label="閉じる">×</button>
-      <p class="modal-category" id="modalCategory"></p>
-      <h3 class="modal-title en" id="modalTitle"></h3>
-      <p class="modal-text" id="modalText"></p>
-      <div class="modal-tags" id="modalTags"></div>
-      <img class="modal-img" id="modalImg" src="" alt="">
-      <div class="modal-lp-detail" id="modalLpDetail"></div>
-    </div>
-  </div>
-
-  <footer class="footer">
-    <small>© 2026&nbsp;&nbsp;NISHITANI NATSUKI'S CREATIVE DESIGN PORTFOLIO</small>
-  </footer>
-
-  <script>
-document.querySelectorAll('.works-grid').forEach((slider) => {
-  const track = slider.querySelector('.slider-track');
-  const pager = slider.parentElement.querySelector('.pager');
-  if (!track || !pager) return;
-
-  const cards = Array.from(track.querySelectorAll('.work-card'));
-  if (!cards.length) return;
-
-  let currentIndex = 0;
-
-  const isSp = () => window.matchMedia('(max-width: 760px)').matches;
-  const getPerPage = () => isSp() ? 2 : cards.length;
-  const getPageCount = () => Math.ceil(cards.length / getPerPage());
-
-  const getCardLeft = (index) => cards[index].offsetLeft - track.offsetLeft;
-
-  const setActiveDot = (index) => {
-    pager.querySelectorAll('.pager-dot').forEach((dot, dotIndex) => {
-      dot.classList.toggle('is-active', dotIndex === index);
-    });
-  };
-
-  const slideTo = (index) => {
-    const pageCount = getPageCount();
-    currentIndex = Math.max(0, Math.min(index, pageCount - 1));
-
-    const targetCardIndex = currentIndex * getPerPage();
-    track.scrollTo({
-      left: getCardLeft(targetCardIndex),
-      behavior: 'smooth'
-    });
-
-    setActiveDot(currentIndex);
-  };
-
-  const buildPager = () => {
-    const pageCount = getPageCount();
-
-    pager.innerHTML = '';
-
-    if (pageCount <= 1) {
-      pager.style.display = 'none';
-      return;
-    }
-
-    pager.style.display = 'flex';
-
-    for (let i = 0; i < pageCount; i++) {
-      const dot = document.createElement('button');
-      dot.className = `pager-dot${i === 0 ? ' is-active' : ''}`;
-      dot.type = 'button';
-      dot.setAttribute('aria-label', `${i + 1}枚目`);
-      dot.addEventListener('click', () => slideTo(i));
-      pager.appendChild(dot);
-    }
-
-    currentIndex = 0;
-  };
-
-  track.addEventListener('scroll', () => {
-    if (!isSp()) return;
-
-    const perPage = getPerPage();
-    let nearestIndex = 0;
-    let minDistance = Infinity;
-
-    for (let i = 0; i < getPageCount(); i++) {
-      const targetCardIndex = i * perPage;
-      const distance = Math.abs(track.scrollLeft - getCardLeft(targetCardIndex));
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        nearestIndex = i;
+    const getPageCount = () => Math.max(1, Math.ceil(getCards().length / getPerPage()));
+    const getCardLeft = (index) => {
+      const cards = getCards();
+      const card = cards[Math.min(index, cards.length - 1)];
+      return card ? card.offsetLeft - track.offsetLeft : 0;
+    };
+    const setActiveDot = (page) => {
+      pager.querySelectorAll('.pager-dot').forEach((dot, i) => dot.classList.toggle('is-active', i === page));
+    };
+    const slideTo = (page) => {
+      const pageCount = getPageCount();
+      currentPage = Math.max(0, Math.min(page, pageCount - 1));
+      const targetCardIndex = currentPage * getPerPage();
+      track.scrollTo({ left: getCardLeft(targetCardIndex), behavior: 'smooth' });
+      setActiveDot(currentPage);
+    };
+    const buildPager = () => {
+      const pageCount = getPageCount();
+      pager.innerHTML = '';
+      if (pageCount <= 1) { pager.style.display = 'none'; return; }
+      pager.style.display = 'flex';
+      for (let i = 0; i < pageCount; i++) {
+        const dot = document.createElement('button');
+        dot.className = `pager-dot${i === currentPage ? ' is-active' : ''}`;
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `${i + 1}枚目`);
+        dot.addEventListener('click', () => slideTo(i));
+        pager.appendChild(dot);
       }
-    }
+      setActiveDot(currentPage);
+    };
+    const updateCurrentPage = () => {
+      const perPage = getPerPage();
+      const pageCount = getPageCount();
+      let nearestPage = 0;
+      let minDistance = Infinity;
+      for (let page = 0; page < pageCount; page++) {
+        const distance = Math.abs(track.scrollLeft - getCardLeft(page * perPage));
+        if (distance < minDistance) { minDistance = distance; nearestPage = page; }
+      }
+      currentPage = nearestPage;
+      setActiveDot(currentPage);
+    };
 
-    currentIndex = nearestIndex;
-    setActiveDot(currentIndex);
-  }, { passive: true });
-
-  buildPager();
-
-  window.addEventListener('resize', () => {
     buildPager();
-    slideTo(0);
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => { updateCurrentPage(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener('resize', () => { currentPage = 0; buildPager(); track.scrollTo({ left: 0, behavior: 'auto' }); });
   });
-});
-</script>
-</body>
+}
+
+// 詳細モーダル
+function initWorkModal() {
+  const modal = document.getElementById('workModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalCategory = document.getElementById('modalCategory');
+  const modalImg = document.getElementById('modalImg');
+  const modalText = document.getElementById('modalText');
+  const modalTags = document.getElementById('modalTags');
+  const modalLpDetail = document.getElementById('modalLpDetail');
+  const modalContent = document.getElementById('modalContent');
+  const modalCloseButtons = document.querySelectorAll('.js-modal-close');
+  if (!modal || !modalContent) return;
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('is-modal-open');
+    modalImg.removeAttribute('src');
+    modalLpDetail.innerHTML = '';
+    modalLpDetail.classList.remove('is-show');
+    modalTags.innerHTML = '';
+    modalImg.style.display = '';
+    modalContent.classList.remove('is-page', 'is-compact');
+    modal.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  document.querySelectorAll('.js-modal-open').forEach((button) => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.work-card');
+      if (!card) return;
+
+      const isLp = card.dataset.type === 'lp';
+      const isLargeView = isLp || card.dataset.category === 'WEB Site';
+      const lpImages = card.dataset.images ? card.dataset.images.split(',').map(src => src.trim()).filter(Boolean) : [];
+      const thumbImg = card.querySelector('.work-img img');
+      const tags = card.dataset.tags ? card.dataset.tags.split(',').map(tag => tag.trim()).filter(Boolean) : [];
+
+      modalTitle.textContent = card.dataset.title || '';
+      modalCategory.textContent = card.dataset.category || '';
+      modalText.textContent = card.dataset.text || '';
+      modalTags.innerHTML = tags.map(tag => `<span>${tag}</span>`).join('');
+
+      modalLpDetail.innerHTML = '';
+      modalLpDetail.classList.remove('is-show');
+      modalImg.style.display = '';
+      modalContent.classList.remove('is-page', 'is-compact');
+      modalContent.classList.add(isLargeView ? 'is-page' : 'is-compact');
+      modal.scrollTo({ top: 0, behavior: 'auto' });
+
+      if (isLp && lpImages.length) {
+        modalImg.style.display = 'none';
+        modalLpDetail.classList.add('is-show');
+        lpImages.forEach((src, index) => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = `${card.dataset.title || 'LP'} 全体画像 ${index + 1}`;
+          img.loading = 'lazy';
+          modalLpDetail.appendChild(img);
+        });
+      } else {
+        modalImg.src = thumbImg?.src || '';
+        modalImg.alt = card.dataset.title || '';
+      }
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('is-modal-open');
+    });
+  });
+
+  modalCloseButtons.forEach((button) => button.addEventListener('click', closeModal));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+}
+
+document.addEventListener('DOMContentLoaded', () => { initWorkSliders(); initWorkModal(); });
+</script></body>
 </html>
