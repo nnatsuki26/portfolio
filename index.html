@@ -11,7 +11,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Noto+Sans+JP:wght@500;700;900&amp;display=swap" rel="stylesheet"/>
 <style>
-:root { --red:#c91c1c; --red-dark:#aa1212; --gray:#eeeeee; --work-gray:#d8d8d8; --white:#ffffff; --text:#151515; --line:#b9b9b9; --duration:0.35s; }
+:root { --red:#c91c1c; --red-dark:#aa1212; --gray:#eeeeee; --work-gray:#d8d8d8; --white:#ffffff; --text:#151515; --line:#b9b9b9; --duration:0.35s; --gap:clamp(26px, 3vw, 46px); }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; background:var(--red); }
 body { margin:0; font-family:"Noto Sans JP", sans-serif; color:var(--text); background:var(--gray); letter-spacing:0.04em; }
@@ -38,19 +38,18 @@ button { font-family:inherit; }
 .section-heading { text-align:center; color:var(--red); margin-bottom:clamp(56px, 6vw, 86px); }
 .section-title { margin:0; font-size:clamp(58px, 6vw, 92px); line-height:0.92; }
 .section-kana { display:block; margin-top:6px; font-size:15px; font-weight:900; letter-spacing:0.08em; }
-.works-grid { width:100%; display:block; overflow:hidden; }
-.slider-track { --slide-gap:clamp(26px, 3vw, 46px); display:flex; gap:var(--slide-gap); overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0 2px 8px; justify-content:flex-start; }
+.works-grid { width:100%; overflow:hidden; }
+.slider-track { display:flex; gap:0; overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
 .slider-track::-webkit-scrollbar { display:none; }
-.slider-page { display:contents; }
-.work-card { display:grid; justify-items:center; gap:16px; flex:0 0 auto; scroll-snap-align:start; }
-.grid-lp .work-card { width:min(170px, calc((100% - 4 * var(--slide-gap)) / 5)); min-width:120px; }
-.grid-banner .work-card { width:calc((100% - 3 * var(--slide-gap)) / 4); min-width:220px; }
-.grid-dtp .work-card { width:calc((100% - 2 * var(--slide-gap)) / 3); min-width:220px; }
-.grid-dtp .work-card:nth-of-type(n + 4) { display:none; }
+.slider-page { flex:0 0 100%; width:100%; display:grid; gap:var(--gap); justify-content:center; scroll-snap-align:start; scroll-snap-stop:always; }
+.grid-lp .slider-page { grid-template-columns:repeat(5, minmax(120px, 170px)); align-items:start; }
+.grid-banner .slider-page { grid-template-columns:repeat(4, minmax(220px, 290px)); row-gap:48px; }
+.grid-dtp .slider-page { grid-template-columns:repeat(3, minmax(220px, 320px)); }
 .grid-web { display:flex; gap:clamp(48px, 5vw, 70px); overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; justify-content:flex-start; }
 .grid-web::-webkit-scrollbar { display:none; }
-.grid-web .work-card { width:calc((100% - 70px) / 2); min-width:320px; scroll-snap-align:start; }
-.sp-only { display:none; }
+.grid-web .work-card { flex:0 0 min(520px, calc((100% - 70px) / 2)); min-width:320px; scroll-snap-align:start; }
+.sp-only { display:grid; }
+.work-card { display:grid; justify-items:center; gap:16px; }
 .work-name { margin:0 0 -4px; color:var(--red); font-size:12px; font-weight:900; line-height:1; }
 .work-img { width:100%; padding:0; border:0; background:var(--work-gray); overflow:hidden; cursor:pointer; transition:transform var(--duration), box-shadow var(--duration), filter var(--duration); }
 .work-card:hover .work-img { transform:translateY(-6px); box-shadow:0 14px 30px rgba(0,0,0,0.08); filter:brightness(0.98); }
@@ -91,10 +90,11 @@ button { font-family:inherit; }
 .modal-lp-detail img { width:100%; height:auto; display:block; }
 .footer { height:92px; scroll-snap-align:end; background:var(--red); color:var(--white); display:grid; place-items:center; padding:24px; text-align:center; font-size:10px; font-weight:700; letter-spacing:0.08em; }
 @media (min-width:761px) { html { scroll-snap-type:y mandatory; } }
-@media (max-width:1100px) { .grid-lp .work-card { width:180px; } .grid-banner .work-card, .grid-dtp .work-card { width:calc((100% - var(--slide-gap)) / 2); } }
-@media (max-width:760px) { html, body { background:var(--gray); scroll-snap-type:none; } .profile-link { top:18px; right:18px; font-size:10px; } .hero, .hero-inner { height:100svh; min-height:100svh; } .hero-title-wrap { width:min(430px, 88vw); } .scroll-circle { width:68px; font-size:10px; } .scroll-line { height:52px; } .works-section { min-height:100svh; padding:64px 0 48px; } #lp { padding-top:120px; } .section-inner { width:100%; overflow:hidden; } .section-heading { margin-bottom:38px; padding:0 24px; } .section-title { font-size:clamp(44px, 12vw, 70px); } .section-kana { font-size:12px; } .slider-track { --slide-gap:24px; padding:0 24px 6px; scroll-padding-left:24px; } .grid-lp .work-card, .grid-banner .work-card, .grid-dtp .work-card { width:calc((100vw - 72px) / 2); min-width:0; } .sp-only { display:grid; } .grid-dtp .work-card:nth-of-type(n + 4) { display:grid; } .grid-web { width:100%; padding:0 24px 6px; gap:24px; } .grid-web .work-card { width:calc(100vw - 72px); min-width:0; } .detail-btn { width:88px; height:26px; } .pager { margin-top:30px; } .scope-box { margin-top:42px; width:min(340px, calc(100% - 48px)); } .modal-content { width:calc(100% - 32px); margin:84px auto 64px; padding:32px 18px 30px; } .modal-content.is-page, .modal-content.is-compact { width:calc(100% - 32px); } .modal-close { top:max(14px, env(safe-area-inset-top)); right:max(14px, env(safe-area-inset-right)); width:56px; height:56px; font-size:36px; } .modal-img, .modal-content.is-compact .modal-img { max-height:none; } .modal-text { text-align:left; font-size:13px; } .modal-tags { justify-content:flex-start; } .modal-lp-detail { width:100%; } .modal-lp-detail, .modal-img { border-radius:14px; } }
+@media (max-width:1100px) { .grid-lp .slider-page { grid-template-columns:repeat(3, minmax(130px, 180px)); } .grid-banner .slider-page, .grid-dtp .slider-page { grid-template-columns:repeat(2, minmax(220px, 320px)); } }
+@media (max-width:760px) { html, body { background:var(--gray); scroll-snap-type:none; } .profile-link { top:18px; right:18px; font-size:10px; } .hero, .hero-inner { height:100svh; min-height:100svh; } .hero-title-wrap { width:min(430px, 88vw); } .scroll-circle { width:68px; font-size:10px; } .scroll-line { height:52px; } .works-section { min-height:100svh; padding:64px 0 48px; } #lp { padding-top:120px; } .section-inner { width:100%; overflow:hidden; } .section-heading { margin-bottom:38px; padding:0 24px; } .section-title { font-size:clamp(44px, 12vw, 70px); } .section-kana { font-size:12px; } .slider-track { padding:0 24px 6px; } .slider-page { grid-template-columns:repeat(2, minmax(0, 1fr)) !important; gap:34px 18px; } .grid-web { width:100%; padding:0 24px 6px; gap:24px; } .grid-web .work-card { flex:0 0 calc(100vw - 72px); min-width:0; } .detail-btn { width:88px; height:26px; } .pager { margin-top:30px; } .scope-box { margin-top:42px; width:min(340px, calc(100% - 48px)); } .modal-content { width:calc(100% - 32px); margin:84px auto 64px; padding:32px 18px 30px; } .modal-content.is-page, .modal-content.is-compact { width:calc(100% - 32px); } .modal-close { top:max(14px, env(safe-area-inset-top)); right:max(14px, env(safe-area-inset-right)); width:56px; height:56px; font-size:36px; } .modal-img, .modal-content.is-compact .modal-img { max-height:none; } .modal-text { text-align:left; font-size:13px; } .modal-tags { justify-content:flex-start; } .modal-lp-detail { width:100%; } .modal-lp-detail, .modal-img { border-radius:14px; } }
 @media (max-width:480px) { .hero-subtitle { font-size:14px; letter-spacing:0.16em; } }
 </style>
+
 </head>
 <body>
 <main>
@@ -131,7 +131,7 @@ button { font-family:inherit; }
 
 <article class="work-card" data-category="LP &amp; Thumbnail" data-images="images/yy02_1_02.webp,images/yy02_1_03.webp,images/yy02_1_02.gif,images/yy02_1_05.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.webp,images/yy02_2_05.webp,images/yy02_2_04.gif,images/yy02_3_01.webp,images/yy02_3_02.webp,images/yy02_3_03.webp,images/yy02_3_04.webp,images/yy02_3_05.webp,images/yy02_3_06.webp,images/yy02_4_01.webp,images/yy02_4_02.webp,images/yy02_4_03.webp,images/yy02_4_04.webp,images/yy02_4_05.webp" data-tags="構成設計,デザイン,演出制作" data-text="毎年ブラッシュアップを重ねながら展開されている定番商品のLP制作を担当しました。近年は低価格帯の商品も増えているカテゴリーのため、単なる価格訴求ではなく、ブランドとしての信頼感や品質感が伝わる見せ方を重視しています。ページ全体は余白を活かしたレイアウトにすることで、プロダクト自体が引き立つよう設計。また、サーキュレーター特有の“空気を循環させる心地よさ”が伝わるよう、空間全体の空気感を感じられる引き気味のビジュアルを要所に配置しています。商品の特徴である360°回転は、ページ上部にGIFを使用して直感的に伝わる構成に。一方で、楽天掲載を想定し、表示速度に影響が出ないようGIFサイズや使用数は最小限に抑えながら設計しています。" data-title="サーキュレーター" data-type="lp">
 <p class="work-name">サーキュレーター</p>
-<button class="work-img lp-set js-modal-open" type="button"><img alt="サーキュレーター サムネイル" class="lp-thumb-img" src="images/yy02_th.jpg"><img alt="サーキュレーター LP" class="lp-page-img" src="images/yy02_1_02.webp"/></img></button>
+<button class="work-img lp-set js-modal-open" type="button"><img alt="サーキュレーター サムネイル" class="lp-thumb-img" src="images/yy02_th.jpg"/><img alt="サーキュレーター LP" class="lp-page-img" src="images/yy02_1_02.webp"/></button>
 <button class="detail-btn js-modal-open" type="button">詳細</button>
 </article>
 <article class="work-card" data-category="LP &amp; Thumbnail" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-tags="構成設計,デザイン,演出制作" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。" data-title="加湿器" data-type="lp">
@@ -306,81 +306,93 @@ button { font-family:inherit; }
 </footer>
 
 <script>
-// PC/SP共通スライダー＋ドット
 function initWorkSliders() {
   document.querySelectorAll('.works-grid').forEach((slider) => {
     const track = slider.querySelector('.slider-track');
     const pager = slider.parentElement.querySelector('.pager');
     if (!track || !pager) return;
 
-    const getCards = () => Array.from(track.querySelectorAll(':scope > .work-card')).filter((card) => window.getComputedStyle(card).display !== 'none');
+    const rawCards = Array.from(track.querySelectorAll('.work-card'));
+    track.innerHTML = '';
+
     const isSp = () => window.matchMedia('(max-width: 760px)').matches;
     const getPerPage = () => {
-      if (isSp()) return slider.classList.contains('grid-web') ? 1 : 2;
+      if (isSp()) return 2;
       if (slider.classList.contains('grid-lp')) return 5;
-      if (slider.classList.contains('grid-banner')) return 4;
+      if (slider.classList.contains('grid-banner')) return 8;
       if (slider.classList.contains('grid-dtp')) return 3;
       return 2;
     };
 
     let currentPage = 0;
-    let ticking = false;
+    let resizeTimer = null;
 
-    const getPageCount = () => Math.max(1, Math.ceil(getCards().length / getPerPage()));
-    const getCardLeft = (index) => {
-      const cards = getCards();
-      const card = cards[Math.min(index, cards.length - 1)];
-      return card ? card.offsetLeft - track.offsetLeft : 0;
+    const makePages = () => {
+      const perPage = getPerPage();
+      const cards = rawCards.filter((card) => !card.classList.contains('sp-only') || true);
+      track.innerHTML = '';
+
+      for (let i = 0; i < cards.length; i += perPage) {
+        const page = document.createElement('div');
+        page.className = 'slider-page';
+        cards.slice(i, i + perPage).forEach((card) => page.appendChild(card));
+        track.appendChild(page);
+      }
     };
-    const setActiveDot = (page) => {
-      pager.querySelectorAll('.pager-dot').forEach((dot, i) => dot.classList.toggle('is-active', i === page));
+
+    const getPages = () => Array.from(track.querySelectorAll('.slider-page'));
+    const setActiveDot = (pageIndex) => {
+      pager.querySelectorAll('.pager-dot').forEach((dot, i) => dot.classList.toggle('is-active', i === pageIndex));
     };
-    const slideTo = (page) => {
-      const pageCount = getPageCount();
-      currentPage = Math.max(0, Math.min(page, pageCount - 1));
-      const targetCardIndex = currentPage * getPerPage();
-      track.scrollTo({ left: getCardLeft(targetCardIndex), behavior: 'smooth' });
+    const slideTo = (pageIndex) => {
+      const pages = getPages();
+      if (!pages.length) return;
+      currentPage = Math.max(0, Math.min(pageIndex, pages.length - 1));
+      track.scrollTo({ left: pages[currentPage].offsetLeft - track.offsetLeft, behavior: 'smooth' });
       setActiveDot(currentPage);
     };
     const buildPager = () => {
-      const pageCount = getPageCount();
+      const pages = getPages();
       pager.innerHTML = '';
-      if (pageCount <= 1) { pager.style.display = 'none'; return; }
+      if (pages.length <= 1) { pager.style.display = 'none'; return; }
       pager.style.display = 'flex';
-      for (let i = 0; i < pageCount; i++) {
+      pages.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.className = `pager-dot${i === currentPage ? ' is-active' : ''}`;
         dot.type = 'button';
         dot.setAttribute('aria-label', `${i + 1}枚目`);
         dot.addEventListener('click', () => slideTo(i));
         pager.appendChild(dot);
-      }
+      });
       setActiveDot(currentPage);
     };
     const updateCurrentPage = () => {
-      const perPage = getPerPage();
-      const pageCount = getPageCount();
+      const pages = getPages();
       let nearestPage = 0;
       let minDistance = Infinity;
-      for (let page = 0; page < pageCount; page++) {
-        const distance = Math.abs(track.scrollLeft - getCardLeft(page * perPage));
-        if (distance < minDistance) { minDistance = distance; nearestPage = page; }
-      }
+      pages.forEach((page, i) => {
+        const distance = Math.abs(track.scrollLeft - (page.offsetLeft - track.offsetLeft));
+        if (distance < minDistance) { minDistance = distance; nearestPage = i; }
+      });
       currentPage = nearestPage;
       setActiveDot(currentPage);
     };
+    const rebuild = () => {
+      currentPage = 0;
+      makePages();
+      buildPager();
+      track.scrollTo({ left: 0, behavior: 'auto' });
+    };
 
-    buildPager();
-    track.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => { updateCurrentPage(); ticking = false; });
-    }, { passive: true });
-    window.addEventListener('resize', () => { currentPage = 0; buildPager(); track.scrollTo({ left: 0, behavior: 'auto' }); });
+    rebuild();
+    track.addEventListener('scroll', () => window.requestAnimationFrame(updateCurrentPage), { passive: true });
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuild, 150);
+    });
   });
 }
 
-// 詳細モーダル
 function initWorkModal() {
   const modal = document.getElementById('workModal');
   const modalTitle = document.getElementById('modalTitle');
@@ -421,7 +433,6 @@ function initWorkModal() {
       modalCategory.textContent = card.dataset.category || '';
       modalText.textContent = card.dataset.text || '';
       modalTags.innerHTML = tags.map(tag => `<span>${tag}</span>`).join('');
-
       modalLpDetail.innerHTML = '';
       modalLpDetail.classList.remove('is-show');
       modalImg.style.display = '';
@@ -455,5 +466,6 @@ function initWorkModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => { initWorkSliders(); initWorkModal(); });
-</script></body>
+</script>
+</body>
 </html>
