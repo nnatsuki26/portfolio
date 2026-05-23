@@ -35,18 +35,21 @@ button { font-family: inherit; }
 .scroll-circle { width: 86px; aspect-ratio: 1; border: 1px solid rgba(255,255,255,0.9); border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
 .scroll-line { width: 1px; height: 74px; background: rgba(255,255,255,0.8); }
 .works-section { min-height: 100dvh; scroll-snap-align: start; scroll-snap-stop: always; padding: clamp(88px, 10vw, 150px) 24px clamp(76px, 8vw, 120px); background: var(--gray); display: grid; align-items: center; }
-.section-inner { width: min(1600px, 100%); margin: 0 auto; }
+.section-inner { width: min(1300px, 100%); margin: 0 auto; }
 .section-heading { text-align: center; color: var(--red); margin-bottom: clamp(56px, 6vw, 86px); }
 .section-title { margin: 0; font-size: clamp(58px, 6vw, 92px); line-height: 0.92; }
 .section-kana { display: block; margin-top: 6px; font-size: 15px; font-weight: 900; letter-spacing: 0.08em; }
-.works-grid { display: grid; gap: clamp(26px, 3vw, 46px); justify-content: center; }
-.slider-track, .slider-page { display: contents; }
-.sp-only { display: none; }
-.grid-lp { grid-template-columns: repeat(5, minmax(120px, 170px)); align-items: start; }
-.grid-banner { grid-template-columns: repeat(4, minmax(220px, 370px)); row-gap: 48px; }
-.grid-dtp { grid-template-columns: repeat(3, minmax(220px, 320px)); }
-.grid-dtp .work-card:nth-of-type(n + 4) { display: none; }
-.grid-web { grid-template-columns: repeat(2, minmax(320px, 520px)); column-gap: clamp(48px, 5vw, 70px); }
+.works-grid { width:100%; display:block; }
+.slider-track { display:grid; gap:clamp(26px, 3vw, 46px); justify-content:center; }
+.slider-page { display:contents; }
+.sp-only { display:none; }
+
+.grid-lp .slider-track { grid-template-columns:repeat(5, minmax(120px, 170px)); align-items:start; }
+.grid-banner .slider-track { grid-template-columns:repeat(4, minmax(220px, 290px)); row-gap:48px; }
+.grid-dtp .slider-track { grid-template-columns:repeat(3, minmax(220px, 320px)); }
+.grid-dtp .work-card:nth-of-type(n + 4) { display:none; }
+
+.grid-web { display:grid; grid-template-columns:repeat(2, minmax(320px, 520px)); column-gap:clamp(48px, 5vw, 70px); justify-content:center; }
 .work-card { display: grid; justify-items: center; gap: 16px; }
 .work-name { margin: 0 0 -4px; color: var(--red); font-size: 12px; font-weight: 900; line-height: 1; }
 .work-img { width: 100%; padding: 0; border: 0; background: var(--work-gray); overflow: hidden; cursor: pointer; transition: transform var(--duration), box-shadow var(--duration), filter var(--duration); }
@@ -54,7 +57,7 @@ button { font-family: inherit; }
 .lp-img { aspect-ratio: 3 / 5.25; }
 .lp-set { aspect-ratio: 3 / 8.25; display: grid; grid-template-rows: 0.95fr 2fr; gap: 14px; background: transparent; }
 .lp-set img { width: 100%; height: 100%; object-fit: cover; object-position: top; background: var(--work-gray); }
-.banner-img { aspect-ratio: 16 / 16; }
+/* .banner-img { aspect-ratio: 16 / 16; } */
 .dtp-img { aspect-ratio: 1; }
 .web-img { aspect-ratio: 16 / 8.8; }
 .work-img img { width: 100%; object-fit: cover; object-position: top; }
@@ -90,8 +93,8 @@ button { font-family: inherit; }
 @media (min-width: 761px) { html { scroll-snap-type: y mandatory; } }
 
 @media (max-width: 1100px) {
-  .grid-lp { grid-template-columns: repeat(3, minmax(130px, 180px)); }
-  .grid-banner, .grid-dtp { grid-template-columns: repeat(2, minmax(220px, 320px)); }
+  .grid-lp .slider-track { grid-template-columns:repeat(3, minmax(130px, 180px)); }
+  .grid-banner .slider-track, .grid-dtp .slider-track { grid-template-columns:repeat(2, minmax(220px, 320px)); }
 }
 
 @media (max-width: 760px) {
@@ -107,15 +110,14 @@ button { font-family: inherit; }
   .section-heading { margin-bottom: 38px; padding: 0 24px; }
   .section-title { font-size: clamp(44px, 12vw, 70px); }
   .section-kana { font-size: 12px; }
-  .works-grid { display: block; width: 100%; }
-  .slider-track { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scroll-padding-left: 24px; -webkit-overflow-scrolling: touch; padding: 0 24px 6px; scrollbar-width: none; }
-  .slider-track::-webkit-scrollbar { display: none; }
-  .slider-page { display: grid; flex: 0 0 calc(100vw - 48px); width: calc(100vw - 48px); scroll-snap-align: start; scroll-snap-stop: always; padding: 0; gap: 34px 18px; }
-  .grid-lp .slider-page, .grid-banner .slider-page, .grid-dtp .slider-page { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sp-only { display: grid; }
-  .grid-dtp .work-card:nth-of-type(n + 4) { display: grid; }
-  .grid-web { display: grid; grid-template-columns: 1fr; width: min(520px, calc(100% - 48px)); margin: 0 auto; gap: 34px; }
-  .grid-web .slider-track, .grid-web .slider-page { display: contents; }
+  .works-grid { display:block; width:100%; }
+.slider-track { display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; scroll-padding-left:24px; -webkit-overflow-scrolling:touch; padding:0 24px 6px; scrollbar-width:none; justify-content:flex-start; }
+.slider-track::-webkit-scrollbar { display:none; }
+.slider-page { display:contents; }
+.grid-lp .work-card, .grid-banner .work-card, .grid-dtp .work-card { flex:0 0 calc((100vw - 72px) / 2); scroll-snap-align:start; }
+.sp-only { display:grid; }
+.grid-dtp .work-card:nth-of-type(n + 4) { display:grid; }
+.grid-web { display:grid; grid-template-columns:1fr; width:min(520px, calc(100% - 48px)); margin:0 auto; gap:34px; }
   .detail-btn { width: 88px; height: 26px; }
   .pager { margin-top: 30px; }
   .scope-box { margin-top: 42px; width: min(340px, calc(100% - 48px)); }
@@ -177,8 +179,6 @@ button { font-family: inherit; }
                 <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
-            </div>
-            <div class="slider-page">
               <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。">
                 <p class="work-name">加湿器</p>
                 <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
@@ -189,8 +189,6 @@ button { font-family: inherit; }
                 <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
-            </div>
-            <div class="slider-page">
               <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。">
                 <p class="work-name">加湿器</p>
                 <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
@@ -245,8 +243,6 @@ button { font-family: inherit; }
                 <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_humidifier_collection.webp" alt="加湿器 バナー" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
-            </div>
-            <div class="slider-page">
               <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。訴求内容が埋もれないよう、コントラストと文字サイズを調整しています。">
                 <p class="work-name">加湿器</p>
                 <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_turf_collection.webp" alt="加湿器 バナー" /></button>
@@ -363,157 +359,93 @@ button { font-family: inherit; }
   </footer>
 
   <script>
-    // SP用スライダー：横スクロール＋ドット切り替え＋フリック対応
-    document.querySelectorAll('.works-grid').forEach((slider) => {
-      const track = slider.querySelector('.slider-track');
-      const pages = slider.querySelectorAll('.slider-page');
-      const pager = slider.parentElement.querySelector('.pager');
-      const dots = pager ? pager.querySelectorAll('.pager-dot') : [];
+document.querySelectorAll('.works-grid').forEach((slider) => {
+  const track = slider.querySelector('.slider-track');
+  const pager = slider.parentElement.querySelector('.pager');
+  if (!track || !pager) return;
 
-      if (!track || pages.length <= 1 || !dots.length) return;
+  const cards = Array.from(track.querySelectorAll('.work-card'));
+  if (!cards.length) return;
 
-      let startX = 0;
-      let startY = 0;
-      let currentIndex = 0;
-      let isTouching = false;
+  let currentIndex = 0;
 
-      const getPageLeft = (index) => pages[index].offsetLeft - track.offsetLeft;
+  const isSp = () => window.matchMedia('(max-width: 760px)').matches;
+  const getPerPage = () => isSp() ? 2 : cards.length;
+  const getPageCount = () => Math.ceil(cards.length / getPerPage());
 
-      const setActiveDot = (index) => {
-        dots.forEach((dot, dotIndex) => {
-          dot.classList.toggle('is-active', dotIndex === index);
-        });
-      };
+  const getCardLeft = (index) => cards[index].offsetLeft - track.offsetLeft;
 
-      const slideTo = (index) => {
-        currentIndex = Math.max(0, Math.min(index, pages.length - 1));
-        track.scrollTo({ left: getPageLeft(currentIndex), behavior: 'smooth' });
-        setActiveDot(currentIndex);
-      };
+  const setActiveDot = (index) => {
+    pager.querySelectorAll('.pager-dot').forEach((dot, dotIndex) => {
+      dot.classList.toggle('is-active', dotIndex === index);
+    });
+  };
 
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => slideTo(index));
-      });
+  const slideTo = (index) => {
+    const pageCount = getPageCount();
+    currentIndex = Math.max(0, Math.min(index, pageCount - 1));
 
-      track.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        isTouching = true;
-      }, { passive: true });
-
-      track.addEventListener('touchend', (e) => {
-        if (!isTouching) return;
-        isTouching = false;
-
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-        const diffX = startX - endX;
-        const diffY = startY - endY;
-
-        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
-          if (diffX > 0) {
-            slideTo(currentIndex + 1);
-          } else {
-            slideTo(currentIndex - 1);
-          }
-        }
-      }, { passive: true });
-
-      track.addEventListener('scroll', () => {
-        const trackLeft = track.scrollLeft;
-        let nearestIndex = 0;
-        let minDistance = Infinity;
-
-        pages.forEach((page, index) => {
-          const distance = Math.abs(trackLeft - getPageLeft(index));
-          if (distance < minDistance) {
-            minDistance = distance;
-            nearestIndex = index;
-          }
-        });
-
-        currentIndex = nearestIndex;
-        setActiveDot(currentIndex);
-      }, { passive: true });
+    const targetCardIndex = currentIndex * getPerPage();
+    track.scrollTo({
+      left: getCardLeft(targetCardIndex),
+      behavior: 'smooth'
     });
 
-    // 詳細モーダル
-    const modal = document.getElementById('workModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalCategory = document.getElementById('modalCategory');
-    const modalImg = document.getElementById('modalImg');
-    const modalText = document.getElementById('modalText');
-    const modalTags = document.getElementById('modalTags');
-    const modalLpDetail = document.getElementById('modalLpDetail');
-    const modalContent = document.getElementById('modalContent');
-    const modalCloseButtons = document.querySelectorAll('.js-modal-close');
+    setActiveDot(currentIndex);
+  };
 
-    const closeModal = () => {
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('is-modal-open');
-      modalImg.removeAttribute('src');
-      modalLpDetail.innerHTML = '';
-      modalLpDetail.classList.remove('is-show');
-      modalImg.style.display = '';
-      modalContent.classList.remove('is-page', 'is-compact');
-      modal.scrollTo({ top: 0, behavior: 'auto' });
-    };
+  const buildPager = () => {
+    const pageCount = getPageCount();
 
-    document.querySelectorAll('.js-modal-open').forEach((button) => {
-      button.addEventListener('click', () => {
-        const card = button.closest('.work-card');
-        if (!card) return;
+    pager.innerHTML = '';
 
-        const isLp = card.dataset.type === 'lp';
-        const isLargeView = isLp || card.dataset.category === 'WEB Site';
-        const lpImages = card.dataset.images ? card.dataset.images.split(',').map(src => src.trim()).filter(Boolean) : [];
-        const thumbImg = card.querySelector('.work-img img');
+    if (pageCount <= 1) {
+      pager.style.display = 'none';
+      return;
+    }
 
-        modalTitle.textContent = card.dataset.title || '';
-        modalCategory.textContent = card.dataset.category || '';
-        modalText.textContent = card.dataset.text || '';
-        const tags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-        modalTags.innerHTML = tags.map(tag => `<span>${tag}</span>`).join('');
+    pager.style.display = 'flex';
 
-        modalLpDetail.innerHTML = '';
-        modalLpDetail.classList.remove('is-show');
-        modalImg.style.display = '';
-        modalContent.classList.remove('is-page', 'is-compact');
-        modalContent.classList.add(isLargeView ? 'is-page' : 'is-compact');
-        modal.scrollTo({ top: 0, behavior: 'auto' });
+    for (let i = 0; i < pageCount; i++) {
+      const dot = document.createElement('button');
+      dot.className = `pager-dot${i === 0 ? ' is-active' : ''}`;
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `${i + 1}枚目`);
+      dot.addEventListener('click', () => slideTo(i));
+      pager.appendChild(dot);
+    }
 
-        if (isLp && lpImages.length) {
-          modalImg.style.display = 'none';
-          modalLpDetail.classList.add('is-show');
+    currentIndex = 0;
+  };
 
-          lpImages.forEach((src, index) => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = `${card.dataset.title || 'LP'} 全体画像 ${index + 1}`;
-            img.loading = 'lazy';
-            modalLpDetail.appendChild(img);
-          });
-        } else {
-          modalImg.src = thumbImg?.src || '';
-          modalImg.alt = card.dataset.title || '';
-        }
+  track.addEventListener('scroll', () => {
+    if (!isSp()) return;
 
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('is-modal-open');
-      });
-    });
+    const perPage = getPerPage();
+    let nearestIndex = 0;
+    let minDistance = Infinity;
 
-    modalCloseButtons.forEach((button) => {
-      button.addEventListener('click', closeModal);
-    });
+    for (let i = 0; i < getPageCount(); i++) {
+      const targetCardIndex = i * perPage;
+      const distance = Math.abs(track.scrollLeft - getCardLeft(targetCardIndex));
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-        closeModal();
+      if (distance < minDistance) {
+        minDistance = distance;
+        nearestIndex = i;
       }
-    });
-  </script>
+    }
+
+    currentIndex = nearestIndex;
+    setActiveDot(currentIndex);
+  }, { passive: true });
+
+  buildPager();
+
+  window.addEventListener('resize', () => {
+    buildPager();
+    slideTo(0);
+  });
+});
+</script>
 </body>
 </html>
