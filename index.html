@@ -248,6 +248,21 @@
     }
 
     .lp-img { aspect-ratio: 3 / 5.25; }
+    .lp-set {
+  aspect-ratio: 3 / 5.25;
+  display: grid;
+  grid-template-rows: 0.95fr 2fr;
+  gap: 14px;
+  background: transparent;
+}
+
+.lp-set img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  background: var(--work-gray);
+}
     .banner-img { aspect-ratio: 16 / 4; }
     .dtp-img { aspect-ratio: 1; }
     .web-img { aspect-ratio: 16 / 8.8; }
@@ -682,40 +697,33 @@
         <div class="works-grid grid-lp">
           <div class="slider-track">
             <div class="slider-page">
-              <article class="work-card" data-type="lp" data-title="サーキュレーター" data-category="LP & Thumbnail" data-images="images/yy02_1_02.webp,images/yy02_1_03.webp,images/yy02_1_02.gif,images/yy02_1_05.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.webp,images/yy02_2_05.webp,images/yy02_2_04.gif,images/yy02_3_01.webp,images/yy02_3_02.webp,images/yy02_3_03.webp,images/yy02_3_04.webp,images/yy02_3_05.webp,images/yy02_3_06.webp,images/yy02_4_01.webp,images/yy02_4_02.webp,images/yy02_4_03.webp,images/yy02_4_04.webp,images/yy02_4_05.webp" data-text="毎年ブラッシュアップを重ねながら展開されている定番商品のLP制作を担当しました。
-近年は低価格帯の商品も増えているカテゴリーのため、単なる価格訴求ではなく、ブランドとしての信頼感や品質感が伝わる見せ方を重視しています。
-
-ページ全体は余白を活かしたレイアウトにすることで、プロダクト自体が引き立つよう設計。
-また、サーキュレーター特有の“空気を循環させる心地よさ”が伝わるよう、空間全体の空気感を感じられる引き気味のビジュアルを要所に配置しています。
-
-商品の特徴である360°回転は、ページ上部にGIFを使用して直感的に伝わる構成に。
-一方で、楽天掲載を想定し、表示速度に影響が出ないようGIFサイズや使用数は最小限に抑えながら設計しています。">
+              <article class="work-card" data-type="lp" data-title="サーキュレーター" data-category="LP & Thumbnail" data-images="images/yy02_1_02.webp,images/yy02_1_03.webp,images/yy02_1_02.gif,images/yy02_1_05.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.webp,images/yy02_2_05.webp,images/yy02_2_04.gif,images/yy02_3_01.webp,images/yy02_3_02.webp,images/yy02_3_03.webp,images/yy02_3_04.webp,images/yy02_3_05.webp,images/yy02_3_06.webp,images/yy02_4_01.webp,images/yy02_4_02.webp,images/yy02_4_03.webp,images/yy02_4_04.webp,images/yy02_4_05.webp" data-text="毎年ブラッシュアップを重ねながら展開されている定番商品のLP制作を担当しました。近年は低価格帯の商品も増えているカテゴリーのため、単なる価格訴求ではなく、ブランドとしての信頼感や品質感が伝わる見せ方を重視しています。ページ全体は余白を活かしたレイアウトにすることで、プロダクト自体が引き立つよう設計。また、サーキュレーター特有の“空気を循環させる心地よさ”が伝わるよう、空間全体の空気感を感じられる引き気味のビジュアルを要所に配置しています。商品の特徴である360°回転は、ページ上部にGIFを使用して直感的に伝わる構成に。一方で、楽天掲載を想定し、表示速度に影響が出ないようGIFサイズや使用数は最小限に抑えながら設計しています。">
                 <p class="work-name">サーキュレーター</p>
-                <button class="work-img lp-img js-modal-open" type="button"><img src="images/yy02_fv.webp" alt="サーキュレーター LP・サムネイル" /></button>
+                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/yy02_th.webp" alt="サーキュレーター サムネイル" /><img class="lp-page-img" src="images/yy02_1_02.webp" alt="サーキュレーター LP" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
               <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-images="images/lp-02-01.webp,images/lp-02-02.webp,images/lp-02-03.webp" data-text="構成・ライティング・デザインを担当しました。季節商材としての分かりやすさと、生活シーンに馴染む見せ方を意識しています。">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-02.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
             </div>
             <div class="slider-page">
               <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-images="images/lp-03-01.webp,images/lp-03-02.webp,images/lp-03-03.webp" data-text="構成・ライティング・デザインを担当しました。商品の機能性と使用イメージをバランス良く見せることを意識しています。">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-03.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
               <article class="work-card" data-type="lp" data-title="掃除機" data-category="LP & Thumbnail" data-images="images/lp-04-01.webp,images/lp-04-02.webp,images/lp-04-03.webp" data-text="構成・ライティング・デザインを担当しました。購買前の不安を解消できるよう、情報整理と見やすさを重視しています。">
                 <p class="work-name">掃除機</p>
-                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-04.jpg" alt="掃除機 LP・サムネイル" /></button>
+                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
             </div>
             <div class="slider-page">
               <article class="work-card" data-type="lp" data-title="加湿器" data-category="LP & Thumbnail" data-images="images/lp-05-01.webp,images/lp-05-02.webp,images/lp-05-03.webp" data-text="構成・ライティング・デザインを担当しました。ECページとしての分かりやすさと、印象に残るビジュアル作りを意識しています。">
                 <p class="work-name">加湿器</p>
-                <button class="work-img lp-img js-modal-open" type="button"><img src="images/lp-05.jpg" alt="加湿器 LP・サムネイル" /></button>
+                <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/lp-02.jpg" alt="加湿器 サムネイル" /><img class="lp-page-img" src="images/lp-02-01.webp" alt="加湿器 LP" /></button>
                 <button class="detail-btn js-modal-open" type="button">詳細</button>
               </article>
             </div>
