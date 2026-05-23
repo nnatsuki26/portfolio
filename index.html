@@ -12,121 +12,83 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet" />
 
   <style>
-:root { --red: #c91c1c; --red-dark: #aa1212; --gray: #eeeeee; --work-gray: #d8d8d8; --white: #ffffff; --text: #151515; --line: #b9b9b9; --duration: 0.35s; }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; background: var(--red); }
-body { margin: 0; font-family: "Noto Sans JP", sans-serif; color: var(--text); background: var(--gray); letter-spacing: 0.04em; }
-body.is-modal-open { overflow: hidden; }
-img { max-width: 100%; display: block; }
-a { color: inherit; text-decoration: none; }
-button { font-family: inherit; }
-.en { font-family: "Archivo Black", "Noto Sans JP", sans-serif; font-weight: 900; letter-spacing: -0.03em; }
-.hero { position: relative; height: 100svh; min-height: 100svh; scroll-snap-align: start; scroll-snap-stop: always; background: var(--red); color: var(--white); overflow: hidden; transform: translateZ(0); will-change: transform; }
-.profile-link { position: absolute; top: clamp(24px, 3vw, 42px); right: clamp(24px, 3.5vw, 58px); z-index: 5; display: grid; justify-items: center; gap: 10px; color: var(--white); font-size: 12px; font-weight: 900; letter-spacing: 0.2em; transition: opacity var(--duration), transform var(--duration); }
-.profile-link:hover { opacity: 0.8; transform: translateY(-3px); }
-.profile-thumb { width: clamp(58px, 5vw, 80px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #ddd; }
-.profile-thumb img { width: 100%; height: 100%; object-fit: cover; }
-.hero-inner { height: 100svh; min-height: 100svh; display: grid; place-items: center; padding: 80px 24px; }
-.hero-title-wrap { width: min(850px, 82vw); }
-.hero-logo { margin: 0; }
-.hero-logo img { width: 100%; display: block; }
-.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 180px; background: var(--red); z-index: 2; pointer-events: none; }
-.scroll-sign { position: absolute; z-index: 3; left: 50%; bottom: 0; translate: -50% 0; display: grid; justify-items: center; color: var(--white); }
-.scroll-circle { width: 86px; aspect-ratio: 1; border: 1px solid rgba(255,255,255,0.9); border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; }
-.scroll-line { width: 1px; height: 74px; background: rgba(255,255,255,0.8); }
-.works-section { min-height: 100dvh; scroll-snap-align: start; scroll-snap-stop: always; padding: clamp(88px, 10vw, 150px) 24px clamp(76px, 8vw, 120px); background: var(--gray); display: grid; align-items: center; }
-.section-inner { width: min(1400px, 100%); margin: 0 auto; }
-.section-heading { text-align: center; color: var(--red); margin-bottom: clamp(56px, 6vw, 86px); }
-.section-title { margin: 0; font-size: clamp(58px, 6vw, 92px); line-height: 0.92; }
-.section-kana { display: block; margin-top: 6px; font-size: 15px; font-weight: 900; letter-spacing: 0.08em; }
-.works-grid { display: grid; gap: clamp(26px, 3vw, 46px); justify-content: center; }
-.slider-track, .slider-page { display: contents; }
-.sp-only { display: none; }
-.grid-lp { grid-template-columns: repeat(6, minmax(120px, 180px)); align-items: start; }
-.grid-banner { grid-template-columns: repeat(4, minmax(220px, 290px)); row-gap:48px; }
-.grid-dtp { grid-template-columns: repeat(3, minmax(220px, 320px)); }
-.grid-dtp .work-card:nth-of-type(n + 4) { display: none; }
-.grid-web { grid-template-columns: repeat(2, minmax(320px, 520px)); column-gap: clamp(48px, 5vw, 70px); }
-.work-card { display: grid; justify-items: center; gap: 16px; }
-.work-name { margin: 0 0 -4px; color: var(--red); font-size: 12px; font-weight: 900; line-height: 1; }
-.work-img { width: 100%; padding: 0; border: 0; background: var(--work-gray); overflow: hidden; cursor: pointer; transition: transform var(--duration), box-shadow var(--duration), filter var(--duration); }
-.work-card:hover .work-img { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(0,0,0,0.08); filter: brightness(0.98); }
-.lp-img { aspect-ratio: 3 / 5.25; }
-.lp-set { aspect-ratio: 3 / 8.25; display: grid; grid-template-rows: 0.95fr 2fr; gap: 14px; background: transparent; }
-.lp-set img { width: 100%; height: 100%; object-fit: cover; object-position: top; background: var(--work-gray); }
-.banner-img { aspect-ratio: 16 / 4; }
-.dtp-img { aspect-ratio: 1; }
-.web-img { aspect-ratio: 16 / 8.8; }
-.work-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.detail-btn { width: 96px; height: 27px; border-radius: 999px; border: 0; background: var(--red); color: var(--white); display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: 11px; font-weight: 900; line-height: 1; cursor: pointer; transition: background var(--duration), transform var(--duration); }
-.detail-btn::before { content: "+"; font-size: 15px; line-height: 1; transform: translateY(-1px); }
-.detail-btn:hover { background: var(--red-dark); transform: translateY(-2px); }
-.pager { display: flex; justify-content: center; gap: 14px; margin-top: clamp(34px, 4vw, 48px); }
-.pager-dot { width: 9px; height: 9px; border-radius: 50%; background: #d4d4d4; border: 0; padding: 0; cursor: pointer; transition: background var(--duration), transform var(--duration); }
-.pager-dot.is-active { background: var(--red); transform: scale(1.15); }
-.scope-box { width: min(340px, 100%); min-height: 34px; margin: clamp(58px, 6vw, 82px) auto 0; border: 1px solid var(--line); display: grid; place-items: center; padding: 8px 16px; font-size: 12px; font-weight: 700; color: #555; }
-.modal { position: fixed; inset: 0; z-index: 9999; opacity: 0; visibility: hidden; pointer-events: none; overflow-y: auto; overscroll-behavior: contain; transition: opacity 0.35s ease, visibility 0.35s ease; }
-.modal.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
-.modal-bg { position: fixed; inset: 0; background: rgba(0,0,0,0.68); cursor: pointer; opacity: 0; transition: opacity 0.35s ease; }
-.modal.is-open .modal-bg { opacity: 1; }
-.modal-content { position: relative; z-index: 2; width: min(980px, calc(100% - 40px)); margin: clamp(88px, 8vw, 120px) auto 80px; background: var(--gray); color: var(--text); padding: clamp(34px, 5vw, 60px); border-radius: 28px; overflow: visible; box-shadow: 0 22px 60px rgba(0,0,0,0.22); opacity: 0; transform: translateY(24px); transition: transform 0.4s ease, opacity 0.4s ease; }
-.modal.is-open .modal-content { opacity: 1; transform: translateY(0); }
-.modal-content.is-page { width: min(1080px, calc(100% - 40px)); }
-.modal-content.is-compact { width: min(860px, calc(100% - 40px)); margin-top: clamp(100px, 12vw, 150px); }
-.modal-close { position: sticky; top: max(18px, env(safe-area-inset-top)); margin-left: auto; z-index: 10; width: 58px; height: 58px; border: 0; border-radius: 16px; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); color: #111; display: grid; place-items: center; font-size: 38px; line-height: 1; cursor: pointer; transition: transform var(--duration), opacity var(--duration), background var(--duration); }
-.modal-close:hover { transform: scale(1.06); opacity: 0.9; background: rgba(255,255,255,1); }
-.modal-category { margin: 0 0 8px; color: var(--red); text-align: center; font-size: 12px; font-weight: 900; letter-spacing: 0.15em; }
-.modal-title { margin: 0 0 24px; color: var(--red); text-align: center; font-size: clamp(34px, 5vw, 68px); line-height: 1; }
-.modal-text { margin: 0 auto 32px; max-width: 720px; font-size: 14px; font-weight: 700; line-height: 2; text-align: center; }
-.modal-img { width: 100%; max-height: none; object-fit: contain; background: var(--work-gray); border-radius: 18px; }
-.modal-content.is-compact .modal-img { max-height: 70dvh; }
-.modal-lp-detail { display: none; width: min(450px, 100%); margin: 0 auto; background: var(--white); overflow: hidden; }
-.modal-lp-detail.is-show { display: grid; gap: 0; }
-.modal-lp-detail img { width: 100%; height: auto; display: block; }
-.footer { height: 92px; scroll-snap-align: end; background: var(--red); color: var(--white); display: grid; place-items: center; padding: 24px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; }
-
-@media (min-width: 761px) { html { scroll-snap-type: y mandatory; } }
-
-@media (max-width: 1100px) {
-  .grid-lp { grid-template-columns: repeat(3, minmax(130px, 180px)); }
-  .grid-banner, .grid-dtp { grid-template-columns: repeat(2, minmax(220px, 320px)); }
-}
-
-@media (max-width: 760px) {
-  html, body { background: var(--gray); scroll-snap-type: none; }
-  .profile-link { top: 18px; right: 18px; font-size: 10px; }
-  .hero, .hero-inner { height: 100svh; min-height: 100svh; }
-  .hero-title-wrap { width: min(430px, 88vw); }
-  .scroll-circle { width: 68px; font-size: 10px; }
-  .scroll-line { height: 52px; }
-  .works-section { min-height: 100svh; padding: 64px 0 48px; }
-  #lp { padding-top: 120px; }
-  .section-inner { width: 100%; overflow: hidden; }
-  .section-heading { margin-bottom: 38px; padding: 0 24px; }
-  .section-title { font-size: clamp(44px, 12vw, 70px); }
-  .section-kana { font-size: 12px; }
-  .works-grid { display: block; width: 100%; }
-  .slider-track { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scroll-padding-left: 24px; -webkit-overflow-scrolling: touch; padding: 0 24px 6px; scrollbar-width: none; }
-  .slider-track::-webkit-scrollbar { display: none; }
-  .slider-page { display: grid; flex: 0 0 calc(100vw - 48px); width: calc(100vw - 48px); scroll-snap-align: start; scroll-snap-stop: always; padding: 0; gap: 34px 18px; }
-  .grid-lp .slider-page, .grid-banner .slider-page, .grid-dtp .slider-page { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sp-only { display: grid; }
-  .grid-dtp .work-card:nth-of-type(n + 4) { display: grid; }
-  .grid-web { display: grid; grid-template-columns: 1fr; width: min(520px, calc(100% - 48px)); margin: 0 auto; gap: 34px; }
-  .grid-web .slider-track, .grid-web .slider-page { display: contents; }
-  .detail-btn { width: 88px; height: 26px; }
-  .pager { margin-top: 30px; }
-  .scope-box { margin-top: 42px; width: min(340px, calc(100% - 48px)); }
-  .modal-content { width: calc(100% - 32px); margin: 84px auto 64px; padding: 32px 18px 30px; }
-  .modal-content.is-page, .modal-content.is-compact { width: calc(100% - 32px); }
-  .modal-close { top: max(14px, env(safe-area-inset-top)); right: max(14px, env(safe-area-inset-right)); width: 56px; height: 56px; font-size: 36px; }
-  .modal-img, .modal-content.is-compact .modal-img { max-height: none; }
-  .modal-text { text-align: left; font-size: 13px; }
-  .modal-lp-detail { width: 100%; }
-  .modal-lp-detail, .modal-img { border-radius: 14px; }
-}
-
-@media (max-width: 480px) { .hero-subtitle { font-size: 14px; letter-spacing: 0.16em; } }
+:root { --red:#c91c1c; --red-dark:#aa1212; --gray:#eeeeee; --work-gray:#d8d8d8; --white:#ffffff; --text:#151515; --line:#b9b9b9; --duration:0.35s; }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; background:var(--red); }
+body { margin:0; font-family:"Noto Sans JP", sans-serif; color:var(--text); background:var(--gray); letter-spacing:0.04em; }
+body.is-modal-open { overflow:hidden; }
+img { max-width:100%; display:block; }
+a { color:inherit; text-decoration:none; }
+button { font-family:inherit; }
+.en { font-family:"Archivo Black", "Noto Sans JP", sans-serif; font-weight:900; letter-spacing:-0.03em; }
+.hero { position:relative; height:100svh; min-height:100svh; scroll-snap-align:start; scroll-snap-stop:always; background:var(--red); color:var(--white); overflow:hidden; transform:translateZ(0); will-change:transform; }
+.profile-link { position:absolute; top:clamp(24px, 3vw, 42px); right:clamp(24px, 3.5vw, 58px); z-index:5; display:grid; justify-items:center; gap:10px; color:var(--white); font-size:12px; font-weight:900; letter-spacing:0.2em; transition:opacity var(--duration), transform var(--duration); }
+.profile-link:hover { opacity:0.8; transform:translateY(-3px); }
+.profile-thumb { width:clamp(58px, 5vw, 80px); aspect-ratio:1; border-radius:50%; overflow:hidden; background:#ddd; }
+.profile-thumb img { width:100%; height:100%; object-fit:cover; }
+.hero-inner { height:100svh; min-height:100svh; display:grid; place-items:center; padding:80px 24px; }
+.hero-title-wrap { width:min(850px, 82vw); }
+.hero-logo { margin:0; }
+.hero-logo img { width:100%; display:block; }
+.hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:180px; background:var(--red); z-index:2; pointer-events:none; }
+.scroll-sign { position:absolute; z-index:3; left:50%; bottom:0; translate:-50% 0; display:grid; justify-items:center; color:var(--white); }
+.scroll-circle { width:86px; aspect-ratio:1; border:1px solid rgba(255,255,255,0.9); border-radius:50%; display:grid; place-items:center; font-size:12px; font-weight:700; }
+.scroll-line { width:1px; height:74px; background:rgba(255,255,255,0.8); }
+.works-section { min-height:100dvh; scroll-snap-align:start; scroll-snap-stop:always; padding:clamp(88px, 10vw, 150px) 24px clamp(76px, 8vw, 120px); background:var(--gray); }
+.section-inner { width:min(1400px, 100%); margin:0 auto; }
+.section-heading { text-align:center; color:var(--red); margin-bottom:clamp(56px, 6vw, 86px); }
+.section-title { margin:0; font-size:clamp(58px, 6vw, 92px); line-height:0.92; }
+.section-kana { display:block; margin-top:6px; font-size:15px; font-weight:900; letter-spacing:0.08em; }
+.works-grid { width:100%; overflow:hidden; }
+.slider-track { --cols:4; --rows:1; --gap:clamp(26px, 3vw, 46px); display:grid; grid-auto-flow:column; grid-template-rows:repeat(var(--rows), auto); grid-auto-columns:calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); gap:var(--gap); overflow-x:auto; overscroll-behavior-x:contain; scroll-snap-type:x mandatory; scroll-behavior:smooth; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0 2px 8px; }
+.slider-track::-webkit-scrollbar { display:none; }
+.work-card { display:grid; justify-items:center; gap:16px; scroll-snap-align:start; }
+.grid-lp .slider-track { --cols:6; --rows:1; }
+.grid-banner .slider-track { --cols:4; --rows:2; }
+.grid-dtp .slider-track { --cols:4; --rows:1; }
+.sp-only { display:grid; }
+.grid-web { display:grid; grid-template-columns:repeat(2, minmax(320px, 520px)); column-gap:clamp(48px, 5vw, 70px); justify-content:center; }
+.work-name { margin:0 0 -4px; color:var(--red); font-size:12px; font-weight:900; line-height:1; }
+.work-img { width:100%; padding:0; border:0; background:var(--work-gray); overflow:hidden; cursor:pointer; transition:transform var(--duration), box-shadow var(--duration), filter var(--duration); }
+.work-card:hover .work-img { transform:translateY(-6px); box-shadow:0 14px 30px rgba(0,0,0,0.08); filter:brightness(0.98); }
+.lp-img { aspect-ratio:3 / 5.25; }
+.lp-set { aspect-ratio:3 / 8.25; display:grid; grid-template-rows:0.95fr 2fr; gap:14px; background:transparent; }
+.lp-set img { width:100%; height:100%; object-fit:cover; object-position:top; background:var(--work-gray); }
+.banner-img { aspect-ratio:16 / 4; }
+.dtp-img { aspect-ratio:1; }
+.web-img { aspect-ratio:16 / 8.8; }
+.work-img img { width:100%; height:100%; object-fit:cover; object-position:top; }
+.detail-btn { width:96px; height:27px; border-radius:999px; border:0; background:var(--red); color:var(--white); display:inline-flex; align-items:center; justify-content:center; gap:12px; font-size:11px; font-weight:900; line-height:1; cursor:pointer; transition:background var(--duration), transform var(--duration); }
+.detail-btn::before { content:"+"; font-size:15px; line-height:1; transform:translateY(-1px); }
+.detail-btn:hover { background:var(--red-dark); transform:translateY(-2px); }
+.pager { display:flex; justify-content:center; gap:14px; margin-top:clamp(34px, 4vw, 48px); }
+.pager-dot { width:9px; height:9px; border-radius:50%; background:#d4d4d4; border:0; padding:0; cursor:pointer; transition:background var(--duration), transform var(--duration); }
+.pager-dot.is-active { background:var(--red); transform:scale(1.15); }
+.scope-box { width:min(340px, 100%); min-height:34px; margin:clamp(58px, 6vw, 82px) auto 0; border:1px solid var(--line); display:grid; place-items:center; padding:8px 16px; font-size:12px; font-weight:700; color:#555; }
+.modal { position:fixed; inset:0; z-index:9999; opacity:0; visibility:hidden; pointer-events:none; overflow-y:auto; overscroll-behavior:contain; transition:opacity 0.35s ease, visibility 0.35s ease; }
+.modal.is-open { opacity:1; visibility:visible; pointer-events:auto; }
+.modal-bg { position:fixed; inset:0; background:rgba(0,0,0,0.68); cursor:pointer; opacity:0; transition:opacity 0.35s ease; }
+.modal.is-open .modal-bg { opacity:1; }
+.modal-content { position:relative; z-index:2; width:min(980px, calc(100% - 40px)); margin:clamp(88px, 8vw, 120px) auto 80px; background:var(--gray); color:var(--text); padding:clamp(34px, 5vw, 60px); border-radius:28px; overflow:visible; box-shadow:0 22px 60px rgba(0,0,0,0.22); opacity:0; transform:translateY(24px); transition:transform 0.4s ease, opacity 0.4s ease; }
+.modal.is-open .modal-content { opacity:1; transform:translateY(0); }
+.modal-content.is-page { width:min(1080px, calc(100% - 40px)); }
+.modal-content.is-compact { width:min(860px, calc(100% - 40px)); margin-top:clamp(100px, 12vw, 150px); }
+.modal-close { position:sticky; top:max(18px, env(safe-area-inset-top)); margin-left:auto; z-index:10; width:58px; height:58px; border:0; border-radius:16px; background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); color:#111; display:grid; place-items:center; font-size:38px; line-height:1; cursor:pointer; transition:transform var(--duration), opacity var(--duration), background var(--duration); }
+.modal-close:hover { transform:scale(1.06); opacity:0.9; background:rgba(255,255,255,1); }
+.modal-category { margin:0 0 8px; color:var(--red); text-align:center; font-size:12px; font-weight:900; letter-spacing:0.15em; }
+.modal-title { margin:0 0 24px; color:var(--red); text-align:center; font-size:clamp(34px, 5vw, 68px); line-height:1; }
+.modal-text { margin:0 auto 24px; max-width:720px; font-size:14px; font-weight:700; line-height:2; text-align:center; white-space:pre-line; }
+.modal-tags { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:0 auto 32px; }
+.modal-tags span { padding:8px 14px; border:1px solid var(--line); border-radius:999px; font-size:11px; font-weight:700; color:#555; background:var(--white); }
+.modal-img { width:100%; max-height:none; object-fit:contain; background:var(--work-gray); border-radius:18px; }
+.modal-content.is-compact .modal-img { max-height:70dvh; }
+.modal-lp-detail { display:none; width:min(450px, 100%); margin:0 auto; background:var(--white); overflow:hidden; }
+.modal-lp-detail.is-show { display:grid; gap:0; }
+.modal-lp-detail img { width:100%; height:auto; display:block; }
+.footer { height:92px; scroll-snap-align:end; background:var(--red); color:var(--white); display:grid; place-items:center; padding:24px; text-align:center; font-size:10px; font-weight:700; letter-spacing:0.08em; }
+@media (min-width:761px) { html { scroll-snap-type:y mandatory; } }
+@media (max-width:760px) { html, body { background:var(--gray); scroll-snap-type:none; } .profile-link { top:18px; right:18px; font-size:10px; } .hero, .hero-inner { height:100svh; min-height:100svh; } .hero-title-wrap { width:min(430px, 88vw); } .scroll-circle { width:68px; font-size:10px; } .scroll-line { height:52px; } .works-section { min-height:100svh; padding:64px 0 48px; } #lp { padding-top:120px; } .section-inner { width:100%; overflow:hidden; } .section-heading { margin-bottom:38px; padding:0 24px; } .section-title { font-size:clamp(44px, 12vw, 70px); } .section-kana { font-size:12px; } .slider-track { --gap:24px; padding:0 24px 6px; scroll-padding-left:24px; } .grid-lp .slider-track { --cols:2; --rows:1; } .grid-banner .slider-track { --cols:2; --rows:2; } .grid-dtp .slider-track { --cols:2; --rows:2; } .grid-web { grid-template-columns:1fr; width:min(520px, calc(100% - 48px)); margin:0 auto; gap:34px; } .detail-btn { width:88px; height:26px; } .pager { margin-top:30px; } .scope-box { margin-top:42px; width:min(340px, calc(100% - 48px)); } .modal-content { width:calc(100% - 32px); margin:84px auto 64px; padding:32px 18px 30px; } .modal-content.is-page, .modal-content.is-compact { width:calc(100% - 32px); } .modal-close { top:max(14px, env(safe-area-inset-top)); right:max(14px, env(safe-area-inset-right)); width:56px; height:56px; font-size:36px; } .modal-img, .modal-content.is-compact .modal-img { max-height:none; } .modal-text { text-align:left; font-size:13px; } .modal-tags { justify-content:flex-start; } .modal-lp-detail { width:100%; } .modal-lp-detail, .modal-img { border-radius:14px; } }
+@media (max-width:480px) { .hero-subtitle { font-size:14px; letter-spacing:0.16em; } }
 </style>
 </head>
 <body>
@@ -328,7 +290,6 @@ button { font-family: inherit; }
 <button class="detail-btn js-modal-open" type="button">詳細</button>
 </article>
 </div>
-          </div>
         </div>
 
         <div class="pager" aria-label="Banner スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button><button class="pager-dot" type="button" aria-label="2枚目"></button></div>
@@ -368,7 +329,6 @@ button { font-family: inherit; }
 <button class="detail-btn js-modal-open" type="button">詳細</button>
 </article>
 </div>
-          </div>
         </div>
 
         <div class="pager" aria-label="DTP スライド切り替え"><button class="pager-dot is-active" type="button" aria-label="1枚目"></button></div>
@@ -396,7 +356,6 @@ button { font-family: inherit; }
               </article>
         </div>
 
-        <div class="scope-box">対応範囲：デザイン</div>
       </div>
     </section>
 
@@ -420,6 +379,7 @@ button { font-family: inherit; }
       <p class="modal-category" id="modalCategory"></p>
       <h3 class="modal-title en" id="modalTitle"></h3>
       <p class="modal-text" id="modalText"></p>
+      <div class="modal-tags" id="modalTags"></div>
       <img class="modal-img" id="modalImg" src="" alt="">
       <div class="modal-lp-detail" id="modalLpDetail"></div>
     </div>
@@ -430,154 +390,146 @@ button { font-family: inherit; }
   </footer>
 
   <script>
-    // SP用スライダー：横スクロール＋ドット切り替え＋フリック対応
-    document.querySelectorAll('.works-grid').forEach((slider) => {
-      const track = slider.querySelector('.slider-track');
-      const pages = slider.querySelectorAll('.slider-page');
-      const pager = slider.parentElement.querySelector('.pager');
-      const dots = pager ? pager.querySelectorAll('.pager-dot') : [];
+function initWorkSliders() {
+  document.querySelectorAll('.works-grid').forEach((slider) => {
+    if (slider.classList.contains('grid-web')) return;
+    const track = slider.querySelector('.slider-track');
+    const pager = slider.parentElement.querySelector('.pager');
+    if (!track || !pager) return;
 
-      if (!track || pages.length <= 1 || !dots.length) return;
+    const getCards = () => Array.from(track.querySelectorAll(':scope > .work-card')).filter((card) => window.getComputedStyle(card).display !== 'none');
+    const getPerPage = () => {
+      const style = getComputedStyle(track);
+      const cols = Number(style.getPropertyValue('--cols')) || 1;
+      const rows = Number(style.getPropertyValue('--rows')) || 1;
+      return cols * rows;
+    };
+    const getPageCount = () => Math.max(1, Math.ceil(getCards().length / getPerPage()));
+    const getCardLeft = (index) => {
+      const cards = getCards();
+      const card = cards[Math.min(index, cards.length - 1)];
+      return card ? card.offsetLeft - track.offsetLeft : 0;
+    };
+    const setActiveDot = (page) => {
+      pager.querySelectorAll('.pager-dot').forEach((dot, index) => dot.classList.toggle('is-active', index === page));
+    };
+    const slideTo = (page) => {
+      const pageCount = getPageCount();
+      const currentPage = Math.max(0, Math.min(page, pageCount - 1));
+      track.scrollTo({ left: getCardLeft(currentPage * getPerPage()), behavior: 'smooth' });
+      setActiveDot(currentPage);
+    };
+    const buildPager = () => {
+      const pageCount = getPageCount();
+      pager.innerHTML = '';
+      if (pageCount <= 1) { pager.style.display = 'none'; return; }
+      pager.style.display = 'flex';
+      for (let i = 0; i < pageCount; i++) {
+        const dot = document.createElement('button');
+        dot.className = `pager-dot${i === 0 ? ' is-active' : ''}`;
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `${i + 1}枚目`);
+        dot.addEventListener('click', () => slideTo(i));
+        pager.appendChild(dot);
+      }
+      setActiveDot(0);
+    };
+    const updateCurrentPage = () => {
+      const perPage = getPerPage();
+      const pageCount = getPageCount();
+      let nearestPage = 0;
+      let minDistance = Infinity;
+      for (let page = 0; page < pageCount; page++) {
+        const distance = Math.abs(track.scrollLeft - getCardLeft(page * perPage));
+        if (distance < minDistance) { minDistance = distance; nearestPage = page; }
+      }
+      setActiveDot(nearestPage);
+    };
 
-      let startX = 0;
-      let startY = 0;
-      let currentIndex = 0;
-      let isTouching = false;
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { updateCurrentPage(); ticking = false; });
+    }, { passive: true });
+    buildPager();
+    window.addEventListener('resize', () => { buildPager(); track.scrollTo({ left: 0, behavior: 'auto' }); });
+  });
+}
 
-      const getPageLeft = (index) => pages[index].offsetLeft - track.offsetLeft;
+function initWorkModal() {
+  const modal = document.getElementById('workModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalCategory = document.getElementById('modalCategory');
+  const modalImg = document.getElementById('modalImg');
+  const modalText = document.getElementById('modalText');
+  const modalTags = document.getElementById('modalTags');
+  const modalLpDetail = document.getElementById('modalLpDetail');
+  const modalContent = document.getElementById('modalContent');
+  const modalCloseButtons = document.querySelectorAll('.js-modal-close');
+  if (!modal || !modalContent) return;
 
-      const setActiveDot = (index) => {
-        dots.forEach((dot, dotIndex) => {
-          dot.classList.toggle('is-active', dotIndex === index);
-        });
-      };
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('is-modal-open');
+    modalImg.removeAttribute('src');
+    modalLpDetail.innerHTML = '';
+    modalLpDetail.classList.remove('is-show');
+    modalTags.innerHTML = '';
+    modalImg.style.display = '';
+    modalContent.classList.remove('is-page', 'is-compact');
+    modal.scrollTo({ top: 0, behavior: 'auto' });
+  };
 
-      const slideTo = (index) => {
-        currentIndex = Math.max(0, Math.min(index, pages.length - 1));
-        track.scrollTo({ left: getPageLeft(currentIndex), behavior: 'smooth' });
-        setActiveDot(currentIndex);
-      };
+  document.querySelectorAll('.js-modal-open').forEach((button) => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.work-card');
+      if (!card) return;
 
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => slideTo(index));
-      });
+      const isLp = card.dataset.type === 'lp';
+      const isLargeView = isLp || card.dataset.category === 'WEB Site';
+      const lpImages = card.dataset.images ? card.dataset.images.split(',').map(src => src.trim()).filter(Boolean) : [];
+      const thumbImg = card.querySelector('.work-img img');
+      const tags = card.dataset.tags ? card.dataset.tags.split(',').map(tag => tag.trim()).filter(Boolean) : [];
 
-      track.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        isTouching = true;
-      }, { passive: true });
-
-      track.addEventListener('touchend', (e) => {
-        if (!isTouching) return;
-        isTouching = false;
-
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-        const diffX = startX - endX;
-        const diffY = startY - endY;
-
-        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
-          if (diffX > 0) {
-            slideTo(currentIndex + 1);
-          } else {
-            slideTo(currentIndex - 1);
-          }
-        }
-      }, { passive: true });
-
-      track.addEventListener('scroll', () => {
-        const trackLeft = track.scrollLeft;
-        let nearestIndex = 0;
-        let minDistance = Infinity;
-
-        pages.forEach((page, index) => {
-          const distance = Math.abs(trackLeft - getPageLeft(index));
-          if (distance < minDistance) {
-            minDistance = distance;
-            nearestIndex = index;
-          }
-        });
-
-        currentIndex = nearestIndex;
-        setActiveDot(currentIndex);
-      }, { passive: true });
-    });
-
-    // 詳細モーダル
-    const modal = document.getElementById('workModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalCategory = document.getElementById('modalCategory');
-    const modalImg = document.getElementById('modalImg');
-    const modalText = document.getElementById('modalText');
-    const modalLpDetail = document.getElementById('modalLpDetail');
-    const modalContent = document.getElementById('modalContent');
-    const modalCloseButtons = document.querySelectorAll('.js-modal-close');
-
-    const closeModal = () => {
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('is-modal-open');
-      modalImg.removeAttribute('src');
+      modalTitle.textContent = card.dataset.title || '';
+      modalCategory.textContent = card.dataset.category || '';
+      modalText.textContent = card.dataset.text || '';
+      modalTags.innerHTML = tags.map(tag => `<span>${tag}</span>`).join('');
       modalLpDetail.innerHTML = '';
       modalLpDetail.classList.remove('is-show');
       modalImg.style.display = '';
       modalContent.classList.remove('is-page', 'is-compact');
+      modalContent.classList.add(isLargeView ? 'is-page' : 'is-compact');
       modal.scrollTo({ top: 0, behavior: 'auto' });
-    };
 
-    document.querySelectorAll('.js-modal-open').forEach((button) => {
-      button.addEventListener('click', () => {
-        const card = button.closest('.work-card');
-        if (!card) return;
-
-        const isLp = card.dataset.type === 'lp';
-        const isLargeView = isLp || card.dataset.category === 'WEB Site';
-        const lpImages = card.dataset.images ? card.dataset.images.split(',').map(src => src.trim()).filter(Boolean) : [];
-        const thumbImg = card.querySelector('.work-img img');
-
-        modalTitle.textContent = card.dataset.title || '';
-        modalCategory.textContent = card.dataset.category || '';
-        modalText.textContent = card.dataset.text || '';
-
-        modalLpDetail.innerHTML = '';
-        modalLpDetail.classList.remove('is-show');
-        modalImg.style.display = '';
-        modalContent.classList.remove('is-page', 'is-compact');
-        modalContent.classList.add(isLargeView ? 'is-page' : 'is-compact');
-        modal.scrollTo({ top: 0, behavior: 'auto' });
-
-        if (isLp && lpImages.length) {
-          modalImg.style.display = 'none';
-          modalLpDetail.classList.add('is-show');
-
-          lpImages.forEach((src, index) => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = `${card.dataset.title || 'LP'} 全体画像 ${index + 1}`;
-            img.loading = 'lazy';
-            modalLpDetail.appendChild(img);
-          });
-        } else {
-          modalImg.src = thumbImg?.src || '';
-          modalImg.alt = card.dataset.title || '';
-        }
-
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('is-modal-open');
-      });
-    });
-
-    modalCloseButtons.forEach((button) => {
-      button.addEventListener('click', closeModal);
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-        closeModal();
+      if (isLp && lpImages.length) {
+        modalImg.style.display = 'none';
+        modalLpDetail.classList.add('is-show');
+        lpImages.forEach((src, index) => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = `${card.dataset.title || 'LP'} 全体画像 ${index + 1}`;
+          img.loading = 'lazy';
+          modalLpDetail.appendChild(img);
+        });
+      } else {
+        modalImg.src = thumbImg?.src || '';
+        modalImg.alt = card.dataset.title || '';
       }
+
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('is-modal-open');
     });
-  </script>
+  });
+
+  modalCloseButtons.forEach((button) => button.addEventListener('click', closeModal));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+}
+
+document.addEventListener('DOMContentLoaded', () => { initWorkSliders(); initWorkModal(); });
+</script>
 </body>
 </html>
