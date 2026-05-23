@@ -46,6 +46,7 @@ button { font-family: inherit; }
 
 .grid-lp .slider-track { grid-template-columns:repeat(5, minmax(120px, 170px)); align-items:start; }
 .grid-banner .slider-track { grid-template-columns:repeat(4, minmax(220px, 290px)); row-gap:48px; }
+.grid-banner .work-card:nth-of-type(n + 9) { display:none; }
 .grid-dtp .slider-track { grid-template-columns:repeat(3, minmax(220px, 320px)); }
 .grid-dtp .work-card:nth-of-type(n + 4) { display:none; }
 
@@ -111,6 +112,7 @@ button { font-family: inherit; }
   .section-title { font-size: clamp(44px, 12vw, 70px); }
   .section-kana { font-size: 12px; }
   .works-grid { display:block; width:100%; }
+  .grid-banner .work-card:nth-of-type(n + 9) { display:grid; }
 .slider-track { display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; scroll-padding-left:24px; -webkit-overflow-scrolling:touch; padding:0 24px 6px; scrollbar-width:none; justify-content:flex-start; }
 .slider-track::-webkit-scrollbar { display:none; }
 .slider-page { display:contents; }
@@ -168,7 +170,7 @@ button { font-family: inherit; }
 
         <div class="works-grid grid-lp">
           <div class="slider-track">
-            <div class="slider-page">
+            <div class="slider-track">
               <article class="work-card" data-type="lp" data-title="サーキュレーター" data-category="LP & Thumbnail" data-tags="構成設計,デザイン,演出制作" data-images="images/yy02_1_02.webp,images/yy02_1_03.webp,images/yy02_1_02.gif,images/yy02_1_05.webp,images/yy02_2_01.gif,images/yy02_2_02.gif,images/yy02_2_03.webp,images/yy02_2_04.webp,images/yy02_2_05.webp,images/yy02_2_04.gif,images/yy02_3_01.webp,images/yy02_3_02.webp,images/yy02_3_03.webp,images/yy02_3_04.webp,images/yy02_3_05.webp,images/yy02_3_06.webp,images/yy02_4_01.webp,images/yy02_4_02.webp,images/yy02_4_03.webp,images/yy02_4_04.webp,images/yy02_4_05.webp" data-text="毎年ブラッシュアップを重ねながら展開されている定番商品のLP制作を担当しました。近年は低価格帯の商品も増えているカテゴリーのため、単なる価格訴求ではなく、ブランドとしての信頼感や品質感が伝わる見せ方を重視しています。ページ全体は余白を活かしたレイアウトにすることで、プロダクト自体が引き立つよう設計。また、サーキュレーター特有の“空気を循環させる心地よさ”が伝わるよう、空間全体の空気感を感じられる引き気味のビジュアルを要所に配置しています。商品の特徴である360°回転は、ページ上部にGIFを使用して直感的に伝わる構成に。一方で、楽天掲載を想定し、表示速度に影響が出ないようGIFサイズや使用数は最小限に抑えながら設計しています。">
                 <p class="work-name">サーキュレーター</p>
                 <button class="work-img lp-set js-modal-open" type="button"><img class="lp-thumb-img" src="images/yy02_th.jpg" alt="サーキュレーター サムネイル" /><img class="lp-page-img" src="images/yy02_1_02.webp" alt="サーキュレーター LP" /></button>
@@ -212,7 +214,7 @@ button { font-family: inherit; }
 
         <div class="works-grid grid-banner">
           <div class="slider-track">
-            <div class="slider-page">
+            <div class="slider-track">
               <article class="work-card" data-title="加湿器" data-category="Banner" data-text="バナーデザインを担当しました。限られた表示面積の中で、視認性と訴求力を両立できるよう制作しています。">
                 <p class="work-name">加湿器</p>
                 <button class="work-img banner-img js-modal-open" type="button"><img src="images/md_bn_sofabed_layout.webp" alt="加湿器 バナー" /></button>
@@ -276,7 +278,7 @@ button { font-family: inherit; }
 
         <div class="works-grid grid-dtp">
           <div class="slider-track">
-            <div class="slider-page">
+            <div class="slider-track">
               <article class="work-card" data-title="パッケージ" data-category="DTP" data-text="パッケージデザインを担当しました。商品の印象やブランド感が伝わるよう、配色・余白・情報整理を意識しています。">
                 <p class="work-name">パッケージ</p>
                 <button class="work-img dtp-img js-modal-open" type="button"><img src="images/dtp-01.jpg" alt="パッケージ デザイン" /></button>
